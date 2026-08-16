@@ -71,7 +71,7 @@ export const common: CommonDict = {
     body: "Spuneți-ne pentru cine este cursul, ce vârstă are cursantul și când poate veni la ore. Vă propunem un nivel, vă spunem care grupe mai au locuri și programăm un scurt test de nivel.",
     primary: "Solicitați un loc",
     secondary: "Discutați cu noi",
-    note: "Fiecare solicitare este citită de un profesor. Ne propunem să răspundem în cel mult o zi lucrătoare.",
+    note: "Fiecare cerere este citită de un profesor. Ne propunem să răspundem în cel mult o zi lucrătoare.",
   },
   cookieBanner: {
     title: "Cookie-urile de pe acest site",
@@ -101,7 +101,7 @@ export const common: CommonDict = {
   notFound: {
     title: "Această pagină nu există",
     body: "Este posibil ca adresa să fie scrisă greșit sau ca pagina să fi fost mutată. Toate secțiunile site-ului se găsesc în meniul de mai sus.",
-    cta: "Mergeți la pagina principală",
+    cta: "Pagina principală",
   },
   errorPage: {
     title: "A apărut o eroare",

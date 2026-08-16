@@ -12,11 +12,11 @@ export const home: HomeDict = {
     title: "Engleză predată la",
     titleAccent: "standardul cerut de examen",
     lead: "Predăm engleza copiilor, adolescenților și adulților din Chișinău, de la primele cuvinte până la C2. Cursurile urmează programele Cambridge și programa de BAC, iar candidații sunt înscriși la examen printr-un centru de examinare autorizat.",
-    primary: "Trimiteți o cerere de înscriere",
+    primary: "Trimiteți o cerere",
     secondary: "Vedeți programele",
-    note: "Cererile de înscriere ajung direct la fondatorul centrului. Citim engleza, româna și rusa deopotrivă.",
+    note: "Cererile de înscriere ajung direct la fondatoarea centrului. Citim engleza, româna și rusa deopotrivă.",
     marks: [
-      "Grupe mici, profesori cunoscuți dinainte",
+      "Grupe mici, profesori cunoscuți",
       "Test de nivel înainte de înscriere",
       "Metodă proprie de predare",
     ],
@@ -110,7 +110,7 @@ export const home: HomeDict = {
     },
     steps: [
       {
-        title: "Testare de nivel și diagnostic",
+        title: "Test de nivel și diagnostic",
         body: "Fiecare cursant susține un test de nivel, scris și oral, înainte de prima lecție. Rezultatul stabilește grupa, nivelul de pornire și competențele pe care profesorul le va solicita cel mai mult.",
       },
       {
@@ -119,7 +119,7 @@ export const home: HomeDict = {
       },
       {
         title: "Măsurare",
-        body: "Niciun ciclu nu se încheie fără un examen de probă și un raport scris. Părinții primesc exact raportul cu care lucrează profesorul, competență cu competență, nu o singură notă.",
+        body: "Niciun ciclu nu se încheie fără o simulare și un raport scris. Părinții primesc exact raportul cu care lucrează profesorul, competență cu competență, nu o singură notă.",
       },
     ],
     cta: "Citiți despre metodă",
@@ -154,7 +154,7 @@ export const home: HomeDict = {
       },
       {
         title: "Ecrane folosite cu rost",
-        body: "Laboratorul de calculatoare este rezervat pe tot parcursul semestrului pentru exersarea examenului digital, pentru ascultare și pentru scriere la tastatură, nu deschis abia în cele două săptămâni dinaintea examenului.",
+        body: "Laboratorul de calculatoare este rezervat pe tot parcursul trimestrului pentru exersarea examenului digital, pentru ascultare și pentru scriere la tastatură, nu deschis abia în cele două săptămâni dinaintea examenului.",
       },
     ],
   },
@@ -168,7 +168,7 @@ export const home: HomeDict = {
     steps: [
       {
         title: "Trimiteți o cerere",
-        body: "Completați formularul online cu vârsta cursantului și cu obiectivul pe care îl urmăriți. Cererea ajunge direct la fondatorul centrului, iar noi răspundem pentru a stabili o oră.",
+        body: "Completați formularul online cu vârsta cursantului și cu obiectivul pe care îl urmăriți. Cererea ajunge direct la fondatoarea centrului, iar noi răspundem pentru a stabili o oră.",
       },
       {
         title: "Test de nivel și o discuție",
@@ -204,7 +204,7 @@ export const home: HomeDict = {
       {
         q: "Poate un certificat Cambridge să înlocuiască proba de engleză de la BAC?",
         // The official term for the awarded mark is „nota 10 din oficiu” — kept verbatim.
-        a: "Poate înlocui examenul cu totul. Un certificat aflat pe lista recunoscută, la nivelul B2 sau mai sus în ansamblu și la citire și scriere, scutește candidatul de proba de limbă străină, iar în locul ei se înregistrează „nota 10 din oficiu”. Pagina de programe prezintă lista, scorurile minime și termenul din aprilie, toate fixate prin ordin de ministru și revizuite de la an la an.",
+        a: "Poate înlocui examenul cu totul. Un certificat aflat pe lista recunoscută, la nivelul B2 sau mai sus în ansamblu și la citire și scriere, scutește candidatul de proba de limbă străină, iar în locul ei se înregistrează „nota 10 din oficiu”. Pagina de programe prezintă lista, scorurile minime și termenul din aprilie, toate fixate prin ordin al ministrului și revizuite de la an la an.",
       },
       {
         // Translator note: "Limba străină I" is the official Moldovan name of the paper. Keep the Romanian form in every language.

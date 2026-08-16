@@ -27,7 +27,7 @@ export const about: AboutDict = {
     ],
     quote:
       "O lecție nu se termină când sună clopoțelul. Se termină atunci când profesorul poate spune cu ce a rămas fiecare copil din ea.",
-    quoteAttribution: "Fondatorul centrului",
+    quoteAttribution: "Fondatoarea centrului",
   },
 
   numbers: {
@@ -55,7 +55,7 @@ export const about: AboutDict = {
       teachers: {
         label: "Profesori angajați",
         caption:
-          "Personal cu contract, nu meditatori angajați cu ora pe durata unui singur semestru.",
+          "Personal cu contract, nu meditatori angajați cu ora pe durata unui singur trimestru.",
       },
     },
   },
@@ -170,8 +170,8 @@ export const about: AboutDict = {
       lead: "Părinții au dreptul să știe exact care este statutul Cambridge al unei școli. Iată-l pe al nostru, în termeni simpli.",
     },
     paragraphs: [
-      "Centrul este centru de pregătire pentru examenele Cambridge English. Acesta este un statut de predare, nu unul de certificare: predăm după programă, pregătim candidații și îi înscriem la examen printr-un centru de examinare autorizat, care îi înregistrează, administrează probele și eliberează rezultatele. Profesorii noștri lucrează cu modelele de teste, baremele de corectare, îndrumările pentru examenele de probă și materialele de formare pe care Cambridge le publică pentru centrele de pregătire, iar nivelurile noastre sunt stabilite după CEFR (CECRL), cadrul Consiliului Europei la care sunt aliniate examenele.",
-      "De aici decurg două consecințe care merită spuse limpede. Un certificat Cambridge English nu are termen de expirare, deși o universitate sau un angajator poate cere totuși un rezultat recent. Iar în Moldova, un certificat care întrunește condițiile poate fi folosit pentru scutirea de proba de limbă străină de la bacalaureat; lista recunoscută, scorurile minime și termenul de depunere sunt stabilite prin ordin de ministru și se modifică, așa că pagina de programe cuprinde detaliile în vigoare, pe care le parcurgem cu fiecare familie.",
+      "Centrul este centru de pregătire pentru examenele Cambridge English. Acesta este un statut de predare, nu unul de certificare: predăm după programă, pregătim candidații și îi înscriem la examen printr-un centru de examinare autorizat, care îi înregistrează, administrează probele și eliberează rezultatele. Profesorii noștri lucrează cu modelele de teste, baremele de corectare, îndrumările pentru simulări și materialele de formare pe care Cambridge le publică pentru centrele de pregătire, iar nivelurile noastre sunt stabilite după CEFR (CECRL), cadrul Consiliului Europei la care sunt aliniate examenele.",
+      "De aici decurg două consecințe care merită spuse limpede. Un certificat Cambridge English nu are termen de expirare, deși o universitate sau un angajator poate cere totuși un rezultat recent. Iar în Moldova, un certificat care întrunește condițiile poate fi folosit pentru scutirea de proba de limbă străină de la bacalaureat; lista recunoscută, scorurile minime și termenul de depunere sunt stabilite prin ordin al ministrului și se modifică, așa că pagina de programe cuprinde detaliile în vigoare, pe care le parcurgem cu fiecare familie.",
     ],
     disclaimer:
       "Suntem centru de pregătire, nu centru de examinare Cambridge autorizat. Examenele se susțin la un centru de examinare autorizat, iar Cambridge nu acreditează și nu avizează cursurile noastre, profesorii noștri sau metoda noastră.",
@@ -208,7 +208,7 @@ export const about: AboutDict = {
       },
       library: {
         name: "Bibliotecă",
-        body: "Lecturi gradate de la Pre A1 în sus, modele de teste din sesiunile anterioare și dicționare; servește totodată drept sală de curs pentru cele mai mici grupe avansate.",
+        body: "Lecturi gradate de la Pre A1 în sus, subiecte de examen din sesiunile anterioare și dicționare; servește totodată drept sală de curs pentru cele mai mici grupe avansate.",
       },
     },
     gallery: [
@@ -237,7 +237,7 @@ export const about: AboutDict = {
     header: {
       eyebrow: "Dincolo de programă",
       title: "Restul cursului",
-      lead: "O parte din fiecare curs este rezervată unor activități care nu se află în manual. Ele intră în orar la începutul semestrului, nu se adaugă dacă mai rămâne timp.",
+      lead: "O parte din fiecare curs este rezervată unor activități care nu se află în manual. Ele intră în orar la începutul trimestrului, nu se adaugă dacă mai rămâne timp.",
     },
     items: [
       {
@@ -250,7 +250,7 @@ export const about: AboutDict = {
       },
       {
         title: "Proiecte de echipă",
-        body: "Fiecare nivel are cel puțin un proiect pe semestru: o campanie de afișe, un scurtmetraj, o dezbatere. Grupa își împarte munca, își stabilește singură termenele și prezintă în engleză în fața celorlalte grupe.",
+        body: "Fiecare nivel are cel puțin un proiect pe trimestru: o campanie de afișe, un scurtmetraj, o dezbatere. Grupa își împarte munca, își stabilește singură termenele și prezintă în engleză în fața celorlalte grupe.",
       },
       {
         title: "Cadouri personalizate",
@@ -270,7 +270,7 @@ export const about: AboutDict = {
   cta: {
     title: "Veniți să vedeți centrul",
     body: "Cel mai limpede mod de a judeca o școală este să stați în ea în timp ce se predă. Trimiteți o cerere și vom stabili o vizită, un test de nivel și o discuție despre grupa potrivită.",
-    primary: "Trimiteți o cerere de înscriere",
+    primary: "Trimiteți o cerere",
     secondary: "Vedeți orarul",
   },
 };

@@ -10,7 +10,7 @@ export const team: TeamDict = {
   hero: {
     eyebrow: "Echipa noastră",
     title: "Oamenii care predau aici",
-    lead: "Fiecare grupă este predată de un angajat al centrului, care lucrează după un singur curriculum și după aceleași standarde.",
+    lead: "La fiecare grupă predă un angajat al centrului, care lucrează după un singur curriculum și după aceleași standarde.",
   },
 
   founder: {
@@ -33,7 +33,7 @@ export const team: TeamDict = {
       lead: "Fiecare profesor lucrează cu un set bine definit de programe și niveluri, astfel încât o grupă rămâne cu cineva care cunoaște programa pe care o parcurge.",
     },
     employmentNote:
-      "Toți cei enumerați aici sunt angajați ai centrului, cu contract în formă legală și cu înregistrarea și actele care decurg din el. Nu completăm orarul cu profesori colaboratori care își împart săptămâna între mai multe școli.",
+      "Toți cei enumerați aici sunt angajați ai centrului, cu contract individual de muncă și cu înregistrarea și actele care decurg din el. Nu completăm orarul cu profesori colaboratori care își împart săptămâna între mai multe școli.",
     sinceLabel: "Predă aici din",
   },
 
@@ -105,7 +105,7 @@ export const team: TeamDict = {
   cta: {
     title: "Cunoașteți profesorul înainte de înscriere",
     body: "Cereți să stați de vorbă cu cel care ar prelua grupa. Găsim un interval în afara orelor sale de predare, întrebați ce doriți, iar decizia o luați după aceea.",
-    primary: "Trimiteți o cerere de înscriere",
+    primary: "Trimiteți o cerere",
     secondary: "Contactați centrul",
   },
 };

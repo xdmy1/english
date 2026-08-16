@@ -15,7 +15,7 @@ export const schedule: ScheduleDict = {
 
   sampleNotice: {
     title: "Aceasta este o săptămână orientativă",
-    body: "Rândurile de mai jos au caracter ilustrativ. Ele arată cum este structurat orarul, nu grupele care se desfășoară acum; orarul pentru trimestrul următor este publicat pe această pagină înainte de începerea trimestrului.",
+    body: "Rândurile de mai jos au caracter ilustrativ. Ele arată cum este structurat orarul, nu grupele care funcționează acum; orarul pentru trimestrul următor este publicat pe această pagină înainte de începerea trimestrului.",
   },
 
   term: {

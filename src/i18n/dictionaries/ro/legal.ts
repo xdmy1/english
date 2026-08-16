@@ -22,7 +22,7 @@ export const legal: LegalDict = {
         ],
         bullets: [
           "Vă cerem un nume, un număr de telefon, o adresă de e-mail, vârsta cursantului și ceea ce alegeți să scrieți în caseta de mesaj. Nimic altceva.",
-          "Folosim solicitarea pentru a vă răspunde și pentru a stabili un test de nivel. Acestea sunt măsuri precontractuale, nu consimțământ, așa că nu există un consimțământ care să fie retras.",
+          "Folosim cererea pentru a vă răspunde și pentru a stabili un test de nivel. Acestea sunt măsuri precontractuale, nu consimțământ, așa că nu există un consimțământ care să fie retras.",
           "Nu vindem niciodată date cu caracter personal, iar noutățile despre cursuri le trimitem doar persoanelor care au bifat caseta separată pentru ele.",
           "Pe acest site nu rulează nimic neesențial fără acordul dumneavoastră, iar fiecare pagină funcționează la fel, indiferent dacă îl acordați sau nu.",
           "Puteți cere să vedeți, să corectați sau să ștergeți datele pe care le deținem și puteți depune o plângere la Centrul Național pentru Protecția Datelor cu Caracter Personal.",
@@ -40,12 +40,12 @@ export const legal: LegalDict = {
       {
         heading: "Ce date cu caracter personal colectăm",
         paragraphs: [
-          "Colectăm ceea ce este efectiv necesar pentru o solicitare de loc și ne oprim acolo.",
+          "Colectăm ceea ce este efectiv necesar pentru o cerere de loc și ne oprim acolo.",
         ],
         bullets: [
-          "Solicitări de înscriere și de contact: numele cursantului, vârsta cursantului, numele părintelui sau al reprezentantului legal atunci când cursantul este copil, un număr de telefon, o adresă de e-mail, programul și orele pe care le preferați, precum și textul mesajului dumneavoastră.",
+          "Cereri de înscriere și de contact: numele cursantului, vârsta cursantului, numele părintelui sau al reprezentantului legal atunci când cursantul este copil, un număr de telefon, o adresă de e-mail, programul și orele pe care le preferați, precum și textul mesajului dumneavoastră.",
           "Noutăți despre cursuri: adresa dumneavoastră de e-mail, dacă ați bifat caseta separată prin care le solicitați.",
-          "Date tehnice care însoțesc o solicitare: adresa dumneavoastră IP, tipul browserului și al dispozitivului, pagina de pe care ați trimis solicitarea și ora la care ați trimis-o. Furnizorul care transportă formularul le înregistrează împreună cu mesajul.",
+          "Date tehnice care însoțesc o cerere: adresa dumneavoastră IP, tipul browserului și al dispozitivului, pagina de pe care ați trimis cererea și ora la care ați trimis-o. Furnizorul prin care se transmite formularul le înregistrează împreună cu mesajul.",
           "Cookie-uri: cele două fișiere mici descrise în politica de cookie-uri. Un identificator online, inclusiv o adresă IP, este dată cu caracter personal în sensul art. 4.",
         ],
       },
@@ -53,7 +53,7 @@ export const legal: LegalDict = {
         heading: "Scopurile prelucrării și temeiul juridic",
         paragraphs: [
           "Legea cere un temei juridic pentru fiecare scop, nu un consimțământ general pentru toate. Temeiurile noastre sunt prezentate în tabelul de pe această pagină.",
-          "Numărul dumneavoastră de telefon și adresa de e-mail nu sunt cerute de vreo lege, însă fără ele nu vă putem oferi un loc și nu putem stabili un test de nivel. Mesajul, orele preferate și bifa pentru noutățile despre cursuri sunt opționale, iar faptul că le lăsați necompletate nu schimbă cu nimic modul în care tratăm solicitarea dumneavoastră.",
+          "Numărul dumneavoastră de telefon și adresa de e-mail nu sunt cerute de vreo lege, însă fără ele nu vă putem oferi un loc și nu putem stabili un test de nivel. Mesajul, orele preferate și bifa pentru noutățile despre cursuri sunt opționale, iar faptul că le lăsați necompletate nu schimbă cu nimic modul în care tratăm cererea dumneavoastră.",
           "Acolo unde temeiul îl constituie interesele legitime, acestea sunt numite în tabel: păstrarea unei evidențe exacte a celor convenite, apărarea drepturilor în justiție și protejarea site-ului. Vă puteți opune oricăreia dintre aceste prelucrări în orice moment.",
           "Nu transformăm o solicitare de informații în marketing. Dacă nu ați cerut noutăți, nu le veți primi.",
         ],
@@ -61,14 +61,14 @@ export const legal: LegalDict = {
           columns: ["Scop", "Date", "Temei juridic", "Stocare"],
           rows: [
             [
-              "Răspunsul la o solicitare de înscriere și programarea unui test de nivel",
+              "Răspunsul la o cerere de înscriere și programarea unui test de nivel",
               "Nume, vârstă, date de contact, preferințe de program și de orar, mesaj",
               "Art. 6 alin. (1) lit. b) — măsuri precontractuale luate la cererea dumneavoastră",
               "12 luni de la ultima comunicare, dacă nu urmează un curs",
             ],
             [
               "Păstrarea evidenței solicitărilor și a celor convenite",
-              "Solicitarea și corespondența purtată pe marginea ei",
+              "Cererea și corespondența purtată pe marginea ei",
               "Art. 6 alin. (1) lit. f) — interesul nostru legitim de a ține evidențe exacte și de a ne apăra drepturile în justiție",
               "12 luni sau, după ocuparea locului, durata contractului de curs plus 3 ani",
             ],
@@ -112,7 +112,7 @@ export const legal: LegalDict = {
           "Art. 8 stabilește pragul din Republica Moldova la 14 ani. Atunci când prelucrarea se întemeiază pe consimțământ, iar serviciul este oferit direct unui copil, copilul trebuie să aibă cel puțin 14 ani; sub această vârstă, prelucrarea este legală numai dacă și în măsura în care consimțământul este acordat sau autorizat de reprezentantul legal al copilului. În Uniunea Europeană, pragul este stabilit de fiecare stat membru între 13 și 16 ani, iar cei 14 ani din Republica Moldova nu se aplică în afara țării.",
           "Formularul de înscriere nu funcționează pe bază de consimțământ. El se întemeiază pe art. 6 alin. (1) lit. b), măsurile pe care le luăm la cererea dumneavoastră înainte de încheierea unui contract, astfel încât regula celor 14 ani nu i se aplică. În schimb, cerem ca formularul să fie completat de un părinte sau de reprezentantul legal pentru orice cursant sub 18 ani, iar formularul precizează acest lucru deasupra primului câmp.",
           "Consimțământul este temei într-un singur loc: bifa separată prin care se solicită noutăți despre cursuri. Acolo depunem eforturi rezonabile, cu mijloacele de care dispunem, pentru a stabili că acesta a fost acordat sau autorizat de un reprezentant legal. Un copil sub 14 ani nu se poate abona singur.",
-          "Cerem vârsta, nu data completă a nașterii, pentru că vârsta este tot ce trebuie pentru o decizie de plasare la nivel. Vă rugăm să nu scrieți în caseta de mesaj informații despre sănătate, alergii sau detalii privind o nevoie de sprijin în învățare: acestea sunt categorii speciale de date în sensul art. 9, iar formularul nu este conceput să le găzduiască. Spuneți-ne prin telefon sau personal, înainte de începerea cursului, și le vom consemna corespunzător, cu consimțământul dumneavoastră explicit și cu o limită de stocare.",
+          "Cerem vârsta, nu data completă a nașterii, pentru că vârsta este tot ce trebuie pentru o decizie de repartizare. Vă rugăm să nu scrieți în caseta de mesaj informații despre sănătate, alergii sau detalii privind o nevoie de sprijin în învățare: acestea sunt categorii speciale de date în sensul art. 9, iar formularul nu este conceput să le găzduiască. Spuneți-ne prin telefon sau personal, înainte de începerea cursului, și le vom consemna corespunzător, cu consimțământul dumneavoastră explicit și cu o limită de stocare.",
         ],
       },
       {
@@ -132,7 +132,7 @@ export const legal: LegalDict = {
         ],
         bullets: [
           "Compania care găzduiește acest site și îi livrează paginile.",
-          "Furnizorul care transportă formularul de înscriere și serviciul de e-mail care ni-l livrează.",
+          "Furnizorul prin care se transmite formularul de înscriere și serviciul de e-mail care ni-l livrează.",
           "Furnizorul hărții de pe pagina de contact, după ce ați permis încărcarea acesteia.",
           "Contabilii noștri și autoritățile publice, atunci când suntem obligați prin lege să le răspundem.",
         ],
@@ -150,7 +150,7 @@ export const legal: LegalDict = {
           "În prezent, formularul de înscriere este livrat prin Web3Forms, un serviciu operat din India de Web3Creative. Trimiterile sunt prelucrate pe Amazon Web Services în Statele Unite, regiunea US-East. Printre subîmputerniciții săi se numără Cloudflare, pentru protecția la nivel de rețea, și, pentru filtrarea spamului, CleanTalk și Akismet, care primesc amândouă adresa IP și adresa de e-mail ale expeditorului. Web3Forms declară că datele trimise au o durată de viață de până la 3 ani în sistemele sale.",
           "De asemenea, furnizorul nostru de găzduire poate stoca sau livra site-ul din afara Republicii Moldova.",
           "Nici India, nici Statele Unite nu beneficiază de o decizie a Centrului privind caracterul adecvat al nivelului de protecție. Prin urmare, aceste transferuri se întemeiază pe clauze standard de protecție a datelor adoptate de Comisia Europeană, pe care art. 46 alin. (2) lit. c) le recunoaște direct și fără o autorizare suplimentară. Scrieți-ne la adresa pentru protecția datelor și vă vom spune ce garanții acoperă fiecare furnizor și cum puteți obține o copie.",
-          "Dacă schimbăm serviciul care transportă formularul, această secțiune este rescrisă înainte ca schimbarea să producă efecte, iar data din capul paginii se modifică odată cu ea.",
+          "Dacă schimbăm serviciul prin care se transmite formularul, această secțiune este rescrisă înainte ca schimbarea să producă efecte, iar data din capul paginii se modifică odată cu ea.",
         ],
       },
       {
@@ -159,7 +159,7 @@ export const legal: LegalDict = {
           "Legea ne permite să indicăm fie o perioadă, fie criteriul care stă la baza ei. Aici le dăm pe amândouă.",
         ],
         bullets: [
-          "Solicitări care nu se finalizează cu un curs: 12 luni de la ultima comunicare, apoi sunt șterse. Criteriul este un ciclu complet de înscrieri, astfel încât să vă recunoaștem dacă ne scrieți din nou înainte de următorul semestru.",
+          "Solicitări care nu se finalizează cu un curs: 12 luni de la ultima comunicare, apoi sunt șterse. Criteriul este un ciclu complet de înscrieri, astfel încât să vă recunoaștem dacă ne scrieți din nou înainte de următorul trimestru.",
           "Dosarele cursanților: durata contractului de curs plus 3 ani. Criteriul este termenul general de prescripție pentru acțiunile civile.",
           "Documentele contabile și fiscale: perioada stabilită de legislația contabilă și fiscală, care depășește 3 ani și pe care nu o putem scurta.",
           "Abonările la noutăți: până la retragerea consimțământului. Ștergem apoi adresa și păstrăm doar înregistrarea faptului că v-ați dezabonat și a datei la care ați făcut-o.",
@@ -203,7 +203,7 @@ export const legal: LegalDict = {
       {
         heading: "Securitatea datelor",
         paragraphs: [
-          "Site-ul este livrat printr-o conexiune criptată, iar solicitările de înscriere circulă pe aceeași conexiune. Accesul la solicitări este limitat la angajații care se ocupă de ele, fiecare cu propriul cont, iar fiecare angajat este ținut de o obligație de confidențialitate asumată în scris. Documentele pe suport de hârtie se păstrează încuiate.",
+          "Site-ul este livrat printr-o conexiune criptată, iar cererile de înscriere circulă pe aceeași conexiune. Accesul la cereri este limitat la angajații care se ocupă de ele, fiecare cu propriul cont, iar fiecare angajat este ținut de o obligație de confidențialitate asumată în scris. Documentele pe suport de hârtie se păstrează încuiate.",
           "Contractele noastre cu furnizorii impun măsuri de securitate și de partea lor și îi obligă să ne notifice fără întârziere dacă se produce o încălcare a securității datelor.",
           "Niciun sistem nu este perfect sigur și nu vom pretinde contrariul. Dacă se produce o încălcare a securității datelor cu caracter personal, notificăm Centrul fără întârzieri nejustificate și, dacă este posibil, în termen de cel mult 72 de ore de la momentul în care am luat cunoștință de ea. Atunci când o încălcare este susceptibilă să genereze un risc ridicat pentru drepturile dumneavoastră, vă informăm și pe dumneavoastră, într-un limbaj clar. Ținem un registru intern al tuturor încălcărilor, inclusiv al celor care nu necesită notificare.",
         ],
@@ -211,7 +211,7 @@ export const legal: LegalDict = {
       {
         heading: "Decizii automatizate și crearea de profiluri",
         paragraphs: [
-          "Nu luăm decizii cu privire la dumneavoastră prin mijloace automatizate și nu creăm profiluri. Fiecare solicitare de înscriere este citită de o persoană, iar plasarea la nivel este hotărâtă de un profesor, după un test scurt și o discuție.",
+          "Nu luăm decizii cu privire la dumneavoastră prin mijloace automatizate și nu creăm profiluri. Fiecare cerere de înscriere este citită de o persoană, iar repartizarea este hotărâtă de un profesor, după un test scurt și o discuție.",
           "Dacă acest lucru se va schimba vreodată, secțiunea de față o va spune, va explica logica utilizată și vă va arăta cum puteți cere o decizie luată de o persoană.",
         ],
       },
@@ -238,7 +238,7 @@ export const legal: LegalDict = {
       {
         heading: "Ce acoperă această politică",
         paragraphs: [
-          "Un cookie este un fișier mic pe care un site îi cere browserului dumneavoastră să îl păstreze, pentru ca ceva să poată fi reținut de la o pagină la alta sau de la o vizită la alta. Tehnicile similare, cum ar fi datele păstrate în memoria locală a browserului, intră sub aceleași reguli și sunt acoperite de această pagină.",
+          "Un cookie este un fișier mic pe care un site îi cere browserului dumneavoastră să îl păstreze, pentru ca ceva să poată fi reținut de la o pagină la alta sau de la o vizită la alta. Tehnicile similare, cum ar fi datele păstrate în memoria locală a browserului, se supun acelorași reguli și sunt acoperite de această pagină.",
           "Lista de mai jos este completă. Dacă se va lungi vreodată, această pagină se modifică înainte de plasarea noului cookie, iar bannerul vă întreabă din nou.",
           "Tot ce facem cu datele din spatele acestor cookie-uri este descris în politica de confidențialitate.",
         ],
@@ -252,18 +252,18 @@ export const legal: LegalDict = {
               "tbi_locale",
               "Reține limba pe care ați ales-o, pentru ca site-ul să se deschidă în ea data viitoare.",
               "12 luni",
-              "Acest site (parte primă)",
+              "Acest site (cookie propriu)",
             ],
             [
               "tbi_consent",
               "Păstrează opțiunea dumneavoastră privind cookie-urile, inclusiv un refuz, împreună cu data la care ați exprimat-o.",
               "12 luni",
-              "Acest site (parte primă)",
+              "Acest site (cookie propriu)",
             ],
           ],
         },
         paragraphs: [
-          "Ambele cookie-uri sunt de parte primă, plasate de acest site și citite de nimeni altcineva. Ambele sunt strict necesare în sensul art. 116 alin. (6) din Legea nr. 72/2025: fac doar ceea ce i-ați cerut site-ului să facă. Niciunul nu este folosit pentru a vă identifica sau pentru a vă urmări undeva.",
+          "Ambele cookie-uri sunt proprii, plasate de acest site și citite de nimeni altcineva. Ambele sunt strict necesare în sensul art. 116 alin. (6) din Legea nr. 72/2025: fac doar ceea ce i-ați cerut site-ului să facă. Niciunul nu este folosit pentru a vă identifica sau pentru a vă urmări undeva.",
           "O consecință merită spusă direct: dacă refuzați totul, tbi_consent tot trebuie să existe, pentru că un refuz este util doar dacă site-ul și-l amintește.",
         ],
       },
@@ -272,7 +272,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "În prezent nu există aici cookie-uri de analiză. Nu vă măsurăm vizita, nu plasăm cookie-uri publicitare, nu rulăm pixeli de rețele sociale, iar nimic din aceste pagini nu vă urmărește pe alt site.",
           "Dacă se vor adăuga mai târziu instrumente de măsurare, ele vor apărea în banner ca o categorie separată, dezactivată până când o activați dumneavoastră, și vor fi trecute în tabelul de pe această pagină înainte de rularea primului script.",
-          "Nicio casetă din banner nu este bifată în prealabil. „Refuz toate” stă lângă „Accept toate”, de aceeași mărime, pe același ecran, la un singur clic distanță.",
+          "Nicio casetă din banner nu este bifată în prealabil. „Respingeți toate” stă lângă „Acceptați toate”, de aceeași mărime, pe același ecran, la un singur clic distanță.",
         ],
       },
       {
@@ -316,14 +316,14 @@ export const legal: LegalDict = {
         paragraphs: [
           "Prin utilizarea acestui site acceptați termenii de pe această pagină. Dacă nu îi acceptați, vă rugăm să nu folosiți site-ul.",
           "Înscrierea este un lucru separat. Fiecare cursant sau, pentru cursanții sub 18 ani, părintele ori reprezentantul legal semnează cu centrul un contract de curs înainte de începerea orelor. Contractul stabilește taxa, orarul, regulile privind prezența și condițiile de încetare a cursului. Acolo unde ceva de pe acest site diferă de contractul semnat, prevalează contractul.",
-          "Menținem site-ul exact și actualizat și corectăm greșelile atunci când le găsim. Cu toate acestea, orarele, mărimea grupelor, nivelurile și datele se schimbă pe parcursul unui semestru; versiunea care vă este confirmată în scris este cea care contează. Nimic de pe acest site nu constituie o ofertă care să poată fi acceptată ca atare.",
+          "Menținem site-ul exact și actualizat și corectăm greșelile atunci când le găsim. Cu toate acestea, orarele, mărimea grupelor, nivelurile și datele se schimbă pe parcursul unui trimestru; versiunea care vă este confirmată în scris este cea care contează. Nimic de pe acest site nu constituie o ofertă care să poată fi acceptată ca atare.",
         ],
       },
       {
         heading: "Solicitarea unui loc",
         paragraphs: [
-          "Formularul de pe acest site este o solicitare, nu o rezervare. Trimiterea lui vă înscrie pe lista persoanelor pe care le contactăm; nu rezervă un loc și nu creează obligații pentru niciuna dintre părți.",
-          "Solicitarea pentru un cursant sub 18 ani trebuie trimisă de un părinte sau de reprezentantul legal.",
+          "Formularul de pe acest site este o cerere, nu o rezervare. Trimiterea lui vă înscrie pe lista persoanelor pe care le contactăm; nu rezervă un loc și nu creează obligații pentru niciuna dintre părți.",
+          "Cererea pentru un cursant sub 18 ani trebuie trimisă de un părinte sau de reprezentantul legal.",
           "În mod obișnuit urmează un apel telefonic, un test scurt de nivel și o confirmare scrisă a grupei, a nivelului și a datei de începere. Locul este rezervat după semnarea contractului de curs și după îndeplinirea condițiilor de plată prevăzute în el.",
           "Grupele au un număr limitat de locuri. Atunci când o grupă este completă, vă spunem acest lucru și vă oferim cea mai apropiată alternativă, în loc să adăugăm locuri într-o sală care nu le poate primi.",
         ],
@@ -332,7 +332,7 @@ export const legal: LegalDict = {
         heading: "Taxe și plată",
         paragraphs: [
           "Nu publicăm prețuri pe acest site, pentru că ele depind de program, de numărul de ore și de format. Întrebați-ne și vă comunicăm în scris taxa pentru cursul care vă interesează, înainte de a vă angaja la ceva.",
-          "Taxa, ceea ce include ea, datele de plată, eventuala eșalonare, precum și regulile privind restituirile și anulările sunt stabilite toate în contractul de curs. Citiți-l înainte de a-l semna și întrebați-ne despre orice nu este clar; preferăm să răspundem de două ori la aceeași întrebare decât ca un semestru să înceapă cu o neînțelegere.",
+          "Taxa, ceea ce include ea, datele de plată, eventuala eșalonare, precum și regulile privind restituirile și anulările sunt stabilite toate în contractul de curs. Citiți-l înainte de a-l semna și întrebați-ne despre orice nu este clar; preferăm să răspundem de două ori la aceeași întrebare decât ca un trimestru să înceapă cu o neînțelegere.",
           "Manualele și taxele de examen sunt poziții separate, dacă în contract nu se prevede altfel. Taxele de examen sunt stabilite de centrul de examinare autorizat sau de organizația care acordă certificatul, nu de noi, iar noi le transmitem mai departe nemodificate.",
         ],
       },
@@ -365,13 +365,13 @@ export const legal: LegalDict = {
         paragraphs: [
           "Uneori grupele se schimbă. Un profesor poate fi înlocuit cu un alt profesor al centrului din cauza unei îmbolnăviri sau a unei schimbări de personal, o lecție poate fi mutată în altă sală, iar o grupă poate fi comasată sau reprogramată atunci când numărul de cursanți impune acest lucru.",
           "Anunțăm cu cât mai mult timp înainte permite situația și, atunci când o schimbare face grupa nepotrivită pentru un cursant, căutăm un loc într-o altă grupă de același nivel.",
-          "Zilele de sărbătoare legală și datele semestrelor pentru fiecare program sunt publicate pe pagina de orar. Orice lecție pierdută din cauza unei zile de sărbătoare se tratează așa cum prevede contractul de curs.",
+          "Zilele de sărbătoare legală și datele trimestrelor pentru fiecare program sunt publicate pe pagina de orar. Orice lecție pierdută din cauza unei zile de sărbătoare se tratează așa cum prevede contractul de curs.",
         ],
       },
       {
         heading: "Ce promitem și ce nu putem promite",
         paragraphs: [
-          "Promitem actul didactic: profesori calificați, lecții pregătite, grupe mici, raportare onestă a progresului și săli potrivite pentru studiu.",
+          "Promitem predarea: profesori calificați, lecții pregătite, grupe mici, raportare onestă a progresului și săli potrivite pentru studiu.",
           "Nu putem promite un rezultat. Nicio școală nu poate. Suntem un centru de pregătire: pregătim candidați pentru examenele Cambridge English și îi înscriem prin intermediul unui centru de examinare autorizat, iar acel centru — nu al nostru — stabilește datele examenelor, taxele și regulile din ziua examenului. Nu elaborăm, nu evaluăm, nu acordăm și nu eliberăm niciun certificat, iar niciun membru al echipei noastre nu poate garanta un calificativ, un scor, promovarea sau o dată până la care va fi atins un nivel. Același lucru este valabil pentru bacalaureat și pentru TOEFL.",
           "Rezultatele la o simulare de examen sau la un test de exersare sunt un instrument de diagnostic. Ele arată unde stă bine un candidat și încotro trebuie îndreptată munca; nu sunt o predicție a notei din ziua examenului.",
           "Răspundem pentru prejudiciul cauzat de propria noastră neexecutare a serviciilor didactice pe care ne-am angajat să le prestăm. Nu răspundem pentru deciziile comisiilor de examinare, ale universităților sau ale autorităților publice, pentru bunurile personale lăsate în centru și nici pentru întreruperile în funcționarea acestui site. Nimic din cele scrise aici nu limitează răspunderea pe care legea nu ne permite să o limităm.",

@@ -35,7 +35,7 @@ export const common: CommonDict = {
     next: "Далее",
     previous: "Назад",
     goToSlide: "Перейти к слайду {n}",
-    skipToContent: "Перейти к основному содержанию",
+    skipToContent: "Перейти к содержанию",
     call: "Позвонить",
     email: "Написать",
     directions: "Проложить маршрут",
@@ -55,7 +55,7 @@ export const common: CommonDict = {
   ],
   footer: {
     tagline:
-      "Частный центр английского языка в Кишинёве. Мы обучаем детей, подростков и взрослых и готовим их к экзаменам Cambridge English и к BAC (бакалавриат).",
+      "Частный центр английского языка в Кишинёве. Мы обучаем детей, подростков и взрослых и готовим их к экзаменам Cambridge English и к экзаменам бакалавриата (BAC).",
     exploreTitle: "Разделы",
     programmesTitle: "Программы",
     contactTitle: "Контакты",
@@ -67,7 +67,7 @@ export const common: CommonDict = {
   },
   ctaBand: {
     eyebrow: "Приём",
-    title: "Узнайте о свободных местах в центре",
+    title: "Узнайте о свободных местах",
     body: "Напишите, для кого нужен курс, сколько лет ученику и когда он может заниматься. Мы предложим уровень, сообщим, в каких группах ещё есть места, и назначим короткий тест на определение уровня.",
     primary: "Оставить заявку",
     secondary: "Написать нам",
@@ -111,6 +111,6 @@ export const common: CommonDict = {
   placeholder: {
     // Small chip on a card whose photograph the centre has not supplied yet.
     badge: "Скоро",
-    photo: "Фотография будет добавлена",
+    photo: "Фото будет позже",
   },
 };

@@ -39,7 +39,7 @@ export const programmes: ProgrammesDict = {
         "Fiecare nivel se încheie cu o simulare completă",
       ],
       outcome:
-        "La finalul unui nivel, cursantul a parcurs tot ceea ce evaluează examenul Cambridge corespunzător și poate fi înscris la acesta printr-un centru autorizat de examinare.",
+        "La finalul unui nivel, cursantul a parcurs tot ceea ce evaluează examenul Cambridge corespunzător și poate fi înscris la acesta printr-un centru de examinare autorizat.",
     },
 
     // Translator note: keep "Limba străină I" in Romanian in all three locales —
@@ -50,7 +50,7 @@ export const programmes: ProgrammesDict = {
       body: "Limba străină I este disciplină obligatorie la bacalaureat la toate profilurile, iar programa națională situează proba la nivelul B1. Predăm după acea programă: un text la prima vedere, un eseu structurat și un subiect de cultură, fiecare evaluat conform baremului național de corectare. Nu există o secțiune separată de gramatică, prin urmare gramatica și ortografia se punctează în interiorul părții scrise.",
       highlights: [
         "Predare după programa națională, item cu item",
-        "Teste oficiale pentru exersare și modele din sesiunile anterioare",
+        "Teste oficiale de antrenament și subiecte din sesiunile anterioare",
         "Procedura de scutire, explicată fiecărei familii",
       ],
       outcome:
@@ -112,11 +112,11 @@ export const programmes: ProgrammesDict = {
     cambridgeExams: {
       name: "Pregătire pentru examenele Cambridge",
       tagline: "De la A2 Key la C2 Proficiency",
-      body: "Un curs scurt pentru candidatul care are deja nivelul și căruia îi mai rămâne proba. Fiecare parte a fiecărei probe este parcursă, cronometrată și evaluată, iar cursul este construit în jurul simulărilor complete, nu al unor exerciții disparate. Pregătim candidați pentru examenele Cambridge English și îi înscriem printr-un centru autorizat de examinare, unde examenul se susține și se evaluează.",
+      body: "Un curs scurt pentru candidatul care are deja nivelul și căruia îi mai rămâne proba. Fiecare parte a fiecărei probe este parcursă, cronometrată și evaluată, iar cursul este construit în jurul simulărilor complete, nu al unor exerciții disparate. Pregătim candidați pentru examenele Cambridge English și îi înscriem printr-un centru de examinare autorizat, unde examenul se susține și se evaluează.",
       highlights: [
         "Simulări cronometrate încă din prima săptămână",
         "Rezultatele simulărilor, citite ca diagnostic, nu ca predicție",
-        "Înscriere printr-un centru autorizat de examinare",
+        "Înscriere printr-un centru de examinare autorizat",
       ],
       outcome:
         "Candidatul ajunge la examen după ce a susținut deja proba integrală contra cronometru și știind unde se află punctele în ea.",
@@ -177,7 +177,7 @@ export const programmes: ProgrammesDict = {
     },
     columns: {
       exam: "Examen",
-      legacy: "Abreviere anterioară",
+      legacy: "Abreviere veche",
       cefr: "CEFR",
       duration: "Durată aproximativă",
       scale: "Scala Cambridge English",
@@ -223,7 +223,7 @@ export const programmes: ProgrammesDict = {
       },
       {
         q: "Organizați dumneavoastră examenele Cambridge?",
-        a: "Nu. Suntem un centru de pregătire: predăm cursurile, organizăm simulările și înscriem candidații printr-un centru autorizat de examinare, unde examenul se susține și se evaluează. Cambridge elaborează probele, acordă calificativele și eliberează certificatele.",
+        a: "Nu. Suntem un centru de pregătire: predăm cursurile, organizăm simulările și înscriem candidații printr-un centru de examinare autorizat, unde examenul se susține și se evaluează. Cambridge elaborează probele, acordă calificativele și eliberează certificatele.",
       },
       {
         q: "Cât durează până la nivelul B2?",
@@ -239,7 +239,7 @@ export const programmes: ProgrammesDict = {
       },
       {
         q: "Este o repetare a englezei de la școală?",
-        a: "Nu, pentru că gruparea este diferită. O clasă de la școală se formează dintr-un an de studiu, în timp ce grupa noastră se formează pe baza unui test de nivel, astfel încât toți cei din sală lucrează la același nivel. Timpul lecției se duce apoi pe vorbit, pe scris și pe corectare, adică exact acolo unde timpul este cel mai puțin într-o clasă numeroasă.",
+        a: "Nu, pentru că gruparea este diferită. O clasă de la școală se formează dintr-un an de studiu, în timp ce grupa noastră se formează pe baza unui test de nivel, astfel încât toți cei din sală lucrează la același nivel. Timpul lecției se duce apoi pe vorbit, pe scris și pe corectare, adică exact acolo unde timpul lipsește cel mai mult într-o clasă numeroasă.",
       },
     ],
   },
@@ -247,7 +247,7 @@ export const programmes: ProgrammesDict = {
   cta: {
     title: "Începeți cu testul de nivel",
     body: "Toate programele de mai sus încep din același punct. Cereți o dată pentru test și o programăm; durează aproximativ o oră, nu costă nimic și lămurește chestiunea nivelului înainte ca cineva să semneze ceva.",
-    primary: "Trimiteți o cerere de înscriere",
+    primary: "Trimiteți o cerere",
     secondary: "Contactați centrul",
   },
 };

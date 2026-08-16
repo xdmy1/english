@@ -4,13 +4,13 @@ export const contact: ContactDict = {
   seo: {
     title: "Contact",
     description:
-      "Cum ne puteți contacta la The Best Indeed English Centre din Chișinău: telefon, e-mail, program de lucru, o hartă pe care o încărcați doar dacă doriți, precum și formularul de solicitare a înscrierii.",
+      "Cum ne puteți contacta la The Best Indeed English Centre din Chișinău: telefon, e-mail, program de lucru, o hartă pe care o încărcați doar dacă doriți, precum și formularul de cerere de înscriere.",
   },
 
   hero: {
     eyebrow: "Contact",
     title: "Cum ne găsiți",
-    lead: "Sunați, scrieți-ne sau trimiteți o solicitare din această pagină. Tot ce ajunge la noi este citit de un membru al echipei, iar întrebările despre înscriere ajung la fondatoare.",
+    lead: "Sunați, scrieți-ne sau trimiteți o cerere din această pagină. Tot ce ajunge la noi este citit de un membru al echipei, iar întrebările despre înscriere ajung la fondatoare.",
   },
 
   cards: {
@@ -46,7 +46,7 @@ export const contact: ContactDict = {
   form: {
     header: {
       eyebrow: "Înscriere",
-      title: "Trimiteți o solicitare",
+      title: "Trimiteți o cerere",
       lead: "Este același formular ca pe pagina de înscriere, ca să nu fie nevoie să părăsiți această pagină. Durează aproximativ două minute și nu vă obligă la nimic.",
     },
   },

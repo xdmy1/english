@@ -10,7 +10,7 @@ export const apply: ApplyDict = {
   hero: {
     eyebrow: "Înscrieri",
     title: "Solicitați un loc",
-    lead: "Nimic din această pagină nu rezervă un loc și nu cere bani. Ea deschide o discuție: dumneavoastră descrieți cursantul, iar noi răspundem cu ceea ce credem că i se potrivește și cu ce ar presupune.",
+    lead: "Nimic din această pagină nu rezervă un loc și nu cere bani. Formularul deschide o discuție: dumneavoastră descrieți cursantul, iar noi răspundem cu ceea ce credem că i se potrivește și cu ce ar presupune.",
   },
 
   form: {
@@ -58,11 +58,11 @@ export const apply: ApplyDict = {
       },
       level: {
         label: "Nivelul actual",
-        hint: "Nivelul se stabilește printr-un test de nivel scurt, scris și oral, așa că o estimare este suficientă.",
+        hint: "Un test de nivel scurt, scris și oral, stabilește nivelul, așa că o estimare este suficientă.",
       },
       preferredSchedule: {
         label: "Intervale preferate",
-        hint: "Spuneți-ne ce vă convine de obicei. Comparăm cu grupele care funcționează în acest semestru.",
+        hint: "Spuneți-ne ce vă convine de obicei. Comparăm cu grupele care funcționează în acest trimestru.",
       },
       message: {
         label: "Altceva ce ar trebui să știm",
@@ -79,10 +79,10 @@ export const apply: ApplyDict = {
     levelUnknown: "Încă nu îmi cunosc nivelul",
 
     schedulePreference: {
-      weekdayAfternoon: "După-amiezi în timpul săptămânii",
-      weekdayEvening: "Seri în timpul săptămânii",
+      weekdayAfternoon: "După-amiezi (luni–vineri)",
+      weekdayEvening: "Seri (luni–vineri)",
       weekend: "Weekend",
-      flexible: "Flexibil, propuneți dumneavoastră",
+      flexible: "Flexibil, propuneți o oră",
     },
 
     required: "Obligatoriu",
@@ -118,7 +118,7 @@ export const apply: ApplyDict = {
 
   failure: {
     title: "Cererea nu a putut fi trimisă",
-    body: "Ceva nu a funcționat între această pagină și căsuța noastră poștală, așa că nu a ajuns nimic la noi. Încercați din nou peste un moment sau sunați-ne la numărul din antet, iar noi preluăm datele prin telefon.",
+    body: "Ceva nu a funcționat între această pagină și căsuța noastră poștală, așa că nu a ajuns nimic la noi. Încercați din nou peste un moment sau sunați-ne la numărul afișat în partea de sus a paginii, iar noi preluăm datele prin telefon.",
     retry: "Încercați din nou",
   },
 
@@ -144,6 +144,6 @@ export const apply: ApplyDict = {
       "Datele ajung în căsuța poștală pentru înscrieri a centrului și sunt prelucrate exclusiv pentru a răspunde la această cerere, a programa un test de nivel și a pregăti o înscriere. Cererile care nu se finalizează cu un loc se șterg în termen de 12 luni; politica de confidențialitate prezintă detaliile complete și drepturile dumneavoastră.",
     callTitle: "Preferați să vorbiți cu cineva",
     callBody:
-      "Secretariatul răspunde la telefon în timpul programului, iar întrebările despre niveluri, orar și datele examenelor se lămuresc deseori mai repede prin viu grai. Numărul și programul de lucru se află în antet și în subsol.",
+      "Secretariatul răspunde la telefon în timpul programului, iar întrebările despre niveluri, orar și datele examenelor se lămuresc deseori mai repede prin viu grai. Numărul și programul de lucru se află în partea de sus a paginii și în subsolul ei.",
   },
 };

@@ -80,9 +80,9 @@ export default async function ContactPage(props: Props) {
           </Reveal>
 
           <div className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-            <ContactDetails dict={t} common={dict.common} className="lg:col-span-5" />
+            <ContactDetails dict={t} common={dict.common} className="min-w-0 lg:col-span-5" />
 
-            <Reveal delay={80} className="lg:col-span-7">
+            <Reveal delay={80} className="min-w-0 lg:col-span-7">
               {/* `flex` makes the inner panel (or the iframe) fill the column. */}
               <ConsentMap dict={t.map} className="flex h-full" />
             </Reveal>
@@ -115,7 +115,7 @@ export default async function ContactPage(props: Props) {
       <Section id="faq" tone="paper">
         <Container>
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-5">
+            <div className="min-w-0 lg:col-span-5">
               <div className="lg:sticky lg:top-28">
                 <SectionHeading
                   index={2}
@@ -126,7 +126,7 @@ export default async function ContactPage(props: Props) {
               </div>
             </div>
 
-            <div className="lg:col-span-6 lg:col-start-7">
+            <div className="min-w-0 lg:col-span-6 lg:col-start-7">
               <Reveal>
                 <Accordion items={t.faq.items} />
               </Reveal>
