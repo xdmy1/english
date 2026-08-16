@@ -1,0 +1,116 @@
+import type { CommonDict } from "../../types";
+
+export const common: CommonDict = {
+  brand: {
+    name: "The Best Indeed English Centre",
+    tagline: "Pregătire pentru examenele Cambridge English în Chișinău",
+  },
+  nav: {
+    home: "Acasă",
+    about: "Despre noi",
+    programmes: "Programe",
+    team: "Echipa",
+    schedule: "Orar",
+    contact: "Contact",
+    apply: "Înscriere",
+    privacy: "Confidențialitate",
+    cookies: "Cookie-uri",
+    terms: "Termeni",
+  },
+  navLabel: {
+    main: "Principal",
+    footer: "Secțiunile site-ului",
+    legal: "Informații juridice",
+  },
+  actions: {
+    apply: "Solicitați un loc",
+    applyShort: "Înscriere",
+    contact: "Contactați-ne",
+    learnMore: "Citiți mai mult",
+    viewAll: "Vedeți toate",
+    back: "Înapoi",
+    close: "Închideți",
+    openMenu: "Deschideți meniul",
+    closeMenu: "Închideți meniul",
+    next: "Următor",
+    previous: "Anterior",
+    goToSlide: "Mergeți la slide-ul {n}",
+    skipToContent: "Săriți la conținutul principal",
+    call: "Sunați-ne",
+    email: "Scrieți-ne",
+    directions: "Cum ajungeți",
+  },
+  language: {
+    label: "Limba",
+    switchTo: "Treceți la {language}",
+  },
+  weekdays: [
+    "Duminică",
+    "Luni",
+    "Marți",
+    "Miercuri",
+    "Joi",
+    "Vineri",
+    "Sâmbătă",
+  ],
+  footer: {
+    tagline:
+      "Centru privat de limba engleză în Chișinău. Predăm copiilor, adolescenților și adulților și pregătim candidați pentru examenele Cambridge English și pentru bacalaureat.",
+    exploreTitle: "Navigare",
+    programmesTitle: "Programe",
+    contactTitle: "Contact",
+    legalTitle: "Informații juridice",
+    addressLabel: "Adresă",
+    hoursLabel: "Program de lucru",
+    rights: "© {year} {name}. Toate drepturile rezervate.",
+    credit: "Proiectat și realizat la Chișinău.",
+  },
+  ctaBand: {
+    eyebrow: "Înscrieri",
+    title: "Întrebați despre un loc la centru",
+    body: "Spuneți-ne pentru cine este cursul, ce vârstă are cursantul și când poate veni la ore. Vă propunem un nivel, vă spunem care grupe mai au locuri și programăm un scurt test de nivel.",
+    primary: "Solicitați un loc",
+    secondary: "Discutați cu noi",
+    note: "Fiecare solicitare este citită de un profesor. Ne propunem să răspundem în cel mult o zi lucrătoare.",
+  },
+  cookieBanner: {
+    title: "Cookie-urile de pe acest site",
+    body: "Două cookie-uri sunt necesare pentru funcționarea acestui site. Analiza traficului și harta încorporată rămân dezactivate până când le permiteți, iar refuzul nu vă costă nimic.",
+    acceptAll: "Acceptați toate",
+    rejectAll: "Respingeți toate",
+    customise: "Personalizați",
+    save: "Salvați alegerile",
+    readMore: "Citiți politica de cookie-uri",
+    settingsLabel: "Setări cookie-uri",
+    alwaysOn: "Mereu active",
+    categories: {
+      necessary: {
+        title: "Necesare",
+        body: "Rețin limba pe care ați ales-o și răspunsul pe care l-ați dat acestui banner. Site-ul nu poate funcționa fără ele, așa că nu pot fi dezactivate.",
+      },
+      analytics: {
+        title: "Analiză",
+        body: "Numărători agregate ale vizitelor pe pagini, care ne arată ce pagini sunt citite. Dacă le refuzați, fiecare pagină funcționează exact ca acum.",
+      },
+      maps: {
+        title: "Hartă",
+        body: "Harta de pe pagina de contact nu poate fi încărcată fără a trimite adresa dumneavoastră IP și detalii despre browser către furnizorul care o găzduiește, așa că rămâne dezactivată până când decideți altfel. Dacă refuzați, adresa este afișată integral, împreună cu un link pe care îl puteți deschide dumneavoastră.",
+      },
+    },
+  },
+  notFound: {
+    title: "Această pagină nu există",
+    body: "Este posibil ca adresa să fie scrisă greșit sau ca pagina să fi fost mutată. Toate secțiunile site-ului se găsesc în meniul de mai sus.",
+    cta: "Mergeți la pagina principală",
+  },
+  errorPage: {
+    title: "A apărut o eroare",
+    body: "Pagina nu s-a încărcat. Încercați din nou, iar dacă eroarea persistă, scrieți-ne și vom verifica.",
+    retry: "Încercați din nou",
+  },
+  placeholder: {
+    // Small chip on a card whose photograph the centre has not supplied yet.
+    badge: "De anunțat",
+    photo: "Fotografie în curând",
+  },
+};

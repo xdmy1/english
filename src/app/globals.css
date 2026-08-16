@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------------- */
+/*  The Best Indeed English Centre — design tokens                            */
+/*  Palette sampled from the printed logo: navy #15266E, red #C52E36, white.  */
+/* ------------------------------------------------------------------------- */
+
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
+
+@theme {
+  /* --- Brand navy ------------------------------------------------------- */
+  --color-navy-50: #f3f5fc;
+  --color-navy-100: #e3e8f8;
+  --color-navy-200: #c7d1ef;
+  --color-navy-300: #9aaadf;
+  --color-navy-400: #687fca;
+  --color-navy-500: #3b56b0;
+  --color-navy-600: #284195;
+  --color-navy-700: #1c327d;
+  --color-navy-800: #152a6f; /* logo navy */
+  --color-navy-900: #0f1e52;
+  --color-navy-950: #091335;
+
+  /* --- Brand red -------------------------------------------------------- */
+  --color-red-50: #fdf1f2;
+  --color-red-100: #fce4e5;
+  --color-red-200: #f6c5c8;
+  --color-red-300: #eb989c;
+  --color-red-400: #dd646a;
+  --color-red-500: #c22e35; /* logo red */
+  --color-red-600: #ae242a;
+  --color-red-700: #931a20;
+  --color-red-800: #78171c;
+  --color-red-900: #601519;
+
+  /* --- Neutrals (navy-tinted, so greys never look muddy next to brand) --- */
+  --color-slate-50: #f8f9fc;
+  --color-slate-100: #f2f3f8;
+  --color-slate-200: #e2e5ee;
+  --color-slate-300: #cacfdd;
+  --color-slate-400: #959bb2;
+  --color-slate-500: #69718c;
+  --color-slate-600: #515970;
+  --color-slate-700: #3d4357;
+  --color-slate-800: #2b3040;
+  --color-slate-900: #1b1f2c;
+
+  /* --- Awards / accreditation accent (used sparingly) -------------------- */
+  --color-brass-100: #f6eddb;
+  --color-brass-400: #c9a45a;
+  --color-brass-500: #ad8536;
+  --color-brass-600: #8c6926;
+
+  /* --- Semantic aliases -------------------------------------------------- */
+  --color-ink: #0f1e52; /* long-form text */
+  --color-paper: #ffffff;
+  --color-chalk: #f5f7fc; /* alternating section ground */
+  --color-line: #e2e5ee;
+
+  /* --- Type -------------------------------------------------------------- */
+  --font-display: var(--font-literata), "Iowan Old Style", "Palatino Linotype",
+    "Book Antiqua", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+
+  /* --- Motion ------------------------------------------------------------ */
+  /* Built-in CSS easings are too weak; these have the punch UI needs. */
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-quint: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* --- Layout ------------------------------------------------------------ */
+  --spacing-header: 4.5rem;
+
+  /* --- Shadows: navy-tinted, never neutral black ------------------------- */
+  --shadow-card: 0 1px 2px rgb(15 30 82 / 0.04), 0 8px 24px -12px rgb(15 30 82 / 0.14);
+  --shadow-lift: 0 2px 4px rgb(15 30 82 / 0.05), 0 18px 40px -18px rgb(15 30 82 / 0.24);
+  --shadow-pop: 0 12px 48px -12px rgb(9 19 53 / 0.34);
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Base                                                                      */
+/* ------------------------------------------------------------------------- */
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-h: 4.5rem;
+  }
+
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05" 1, "cv11" 1, "ss03" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    color: var(--color-navy-900);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-navy-800);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-navy-600);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Numbers should never wobble in tables, stats or timetables. */
+  table,
+  time,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Scroll reveal — see components/ui/Reveal.tsx */
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-y, 10px), 0);
+    transition:
+      opacity 520ms var(--ease-out-quint) var(--reveal-delay, 0ms),
+      transform 520ms var(--ease-out-quint) var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal[data-shown] {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Respect the OS setting everywhere, without killing comprehension cues. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Utilities                                                                 */
+/* ------------------------------------------------------------------------- */
+
+/* The brand's diagonal navy/red rule, reduced to a reusable 2px marker. */
+@utility brand-rule {
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-navy-800) 0,
+    var(--color-navy-800) 50%,
+    var(--color-red-500) 50%,
+    var(--color-red-500) 100%
+  );
+}
+
+/* Faint ruled-notebook ground — a language-school motif, not a gradient blob. */
+@utility ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgb(21 42 111 / 0.055) 31px,
+    rgb(21 42 111 / 0.055) 32px
+  );
+  background-position: 0 0;
+}
+
+@utility grid-paper {
+  background-image:
+    linear-gradient(to right, rgb(21 42 111 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(21 42 111 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Print-like grain. Keeps large navy fields from reading as flat digital ink. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+}
+
+/* Small-caps eyebrow used above every section heading. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Underline that draws in on hover, left-to-right. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 260ms var(--ease-out-quint);
+
+  @variant can-hover {
+    &:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+@utility press {
+  transition: transform 160ms var(--ease-out-quint);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Fades the edges of a horizontally scrolling rail. */
+@utility mask-rail-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent 100%
+  );
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

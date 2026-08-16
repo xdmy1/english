@@ -1,0 +1,116 @@
+import type { CommonDict } from "../../types";
+
+export const common: CommonDict = {
+  brand: {
+    name: "The Best Indeed English Centre",
+    tagline: "Cambridge English exam preparation in Chișinău",
+  },
+  nav: {
+    home: "Home",
+    about: "About",
+    programmes: "Programmes",
+    team: "Team",
+    schedule: "Timetable",
+    contact: "Contact",
+    apply: "Apply",
+    privacy: "Privacy notice",
+    cookies: "Cookie policy",
+    terms: "Terms",
+  },
+  navLabel: {
+    main: "Main",
+    footer: "Site sections",
+    legal: "Legal",
+  },
+  actions: {
+    apply: "Request a place",
+    applyShort: "Apply",
+    contact: "Contact us",
+    learnMore: "Read more",
+    viewAll: "View all",
+    back: "Back",
+    close: "Close",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    next: "Next",
+    previous: "Previous",
+    goToSlide: "Go to slide {n}",
+    skipToContent: "Skip to main content",
+    call: "Call us",
+    email: "Email us",
+    directions: "Get directions",
+  },
+  language: {
+    label: "Language",
+    switchTo: "Switch to {language}",
+  },
+  weekdays: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ],
+  footer: {
+    tagline:
+      "A private English-language centre in Chișinău. We teach children, teenagers and adults, and prepare candidates for Cambridge English exams and the baccalaureate.",
+    exploreTitle: "Explore",
+    programmesTitle: "Programmes",
+    contactTitle: "Contact",
+    legalTitle: "Legal",
+    addressLabel: "Address",
+    hoursLabel: "Opening hours",
+    rights: "© {year} {name}. All rights reserved.",
+    credit: "Designed and built in Chișinău.",
+  },
+  ctaBand: {
+    eyebrow: "Admissions",
+    title: "Ask about a place at the centre",
+    body: "Tell us who the course is for, their age and when they can attend. We will suggest a level, say which groups still have places and arrange a short placement test.",
+    primary: "Request a place",
+    secondary: "Talk to us",
+    note: "A teacher reads every request. We aim to reply within one working day.",
+  },
+  cookieBanner: {
+    title: "Cookies on this site",
+    body: "Two cookies are needed to run this site. Analytics and the embedded map stay switched off until you allow them, and refusing costs you nothing.",
+    acceptAll: "Accept all",
+    rejectAll: "Reject all",
+    customise: "Customise",
+    save: "Save choices",
+    readMore: "Read the cookie policy",
+    settingsLabel: "Cookie settings",
+    alwaysOn: "Always on",
+    categories: {
+      necessary: {
+        title: "Necessary",
+        body: "Remember the language you chose and the answer you gave to this banner. The site cannot run without them, so they cannot be switched off.",
+      },
+      analytics: {
+        title: "Analytics",
+        body: "Aggregated counts of page visits that show us which pages are read. Refuse them and every page works exactly as it does now.",
+      },
+      maps: {
+        title: "Map",
+        body: "The map on the contact page cannot load without sending your IP address and browser details to the provider hosting it, so it stays off until you say otherwise. Refuse, and the address is printed in full with a link you can open yourself.",
+      },
+    },
+  },
+  notFound: {
+    title: "This page does not exist",
+    body: "The address may be mistyped, or the page may have moved. Every section of the site is in the menu above.",
+    cta: "Go to the home page",
+  },
+  errorPage: {
+    title: "Something went wrong",
+    body: "The page did not load. Try again, and if it keeps failing, write to us and we will look into it.",
+    retry: "Try again",
+  },
+  placeholder: {
+    // Small chip on a card whose photograph the centre has not supplied yet.
+    badge: "To follow",
+    photo: "Photo to follow",
+  },
+};
