@@ -5,7 +5,6 @@ import { BrandRule } from "@/components/site/Logo";
 import { ArrowRight, Button } from "@/components/ui/Button";
 import { Tick } from "@/components/ui/CheckList";
 import { CountUp } from "@/components/ui/CountUp";
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
 import { StatCard } from "@/components/ui/StatCard";
 import { statValue } from "@/components/ui/StatBlock";
@@ -29,16 +28,21 @@ const accentUnderline: CSSProperties = {
   backgroundPosition: "0 100%",
 };
 
+/**
+ * Nothing in here is wrapped in <Reveal>. This is the first viewport and the
+ * headline is the LCP element: a reveal would ship it at opacity 0 and wait for
+ * hydration before painting it. Everything below the fold still reveals.
+ */
 export function HomeHero({
   locale,
   dict,
-  passRateLabel,
+  passRate,
   year,
 }: {
   locale: Locale;
   dict: HomeDict["hero"];
-  /** Label for the floating stat card — comes from home.stats.labels. */
-  passRateLabel: string;
+  /** Label and its qualification — comes from home.stats.labels.passRate. */
+  passRate: HomeDict["stats"]["labels"]["passRate"];
   year: number;
 }) {
   return (
@@ -52,70 +56,60 @@ export function HomeHero({
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
           {/* ── Left: the argument ─────────────────────────────────────── */}
           <div className="lg:col-span-7">
-            <Reveal>
-              <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1.5 pr-4 pl-3 text-[0.8125rem] font-medium text-navy-700">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 shrink-0 rounded-full bg-red-500"
-                />
-                {dict.badge}
-              </p>
-            </Reveal>
+            <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1.5 pr-4 pl-3 text-[0.8125rem] font-medium text-navy-700">
+              <span
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-full bg-red-500"
+              />
+              {dict.badge}
+            </p>
 
-            <Reveal delay={60}>
-              <h1 className="mt-7 text-[2.375rem] leading-[1.06] font-semibold tracking-[-0.022em] text-navy-900 sm:text-[3rem] lg:text-[3.375rem]">
-                <span className="block text-balance">{dict.title}</span>
-                <span className="mt-1.5 block text-balance">
-                  <span className="box-decoration-clone pb-[0.16em]" style={accentUnderline}>
-                    {dict.titleAccent}
-                  </span>
+            <h1 className="mt-7 text-[2.375rem] leading-[1.06] font-semibold tracking-[-0.022em] text-navy-900 sm:text-[3rem] lg:text-[3.375rem]">
+              <span className="block text-balance">{dict.title}</span>
+              <span className="mt-1.5 block text-balance">
+                <span className="box-decoration-clone pb-[0.16em]" style={accentUnderline}>
+                  {dict.titleAccent}
                 </span>
-              </h1>
-            </Reveal>
+              </span>
+            </h1>
 
-            <Reveal delay={120}>
-              <p className="mt-7 max-w-xl text-[1.0625rem] leading-[1.68] text-slate-600">
-                {dict.lead}
-              </p>
-            </Reveal>
+            <p className="mt-7 max-w-xl text-[1.0625rem] leading-[1.68] text-slate-600">
+              {dict.lead}
+            </p>
 
-            <Reveal delay={180}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button
-                  href={href(locale, "apply")}
-                  size="lg"
-                  trailing={<ArrowRight />}
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <Button
+                href={href(locale, "apply")}
+                size="lg"
+                trailing={<ArrowRight />}
+              >
+                {dict.primary}
+              </Button>
+              <Button href={href(locale, "programmes")} size="lg" variant="outline">
+                {dict.secondary}
+              </Button>
+            </div>
+            <p className="mt-4 max-w-md text-[0.8125rem] leading-relaxed text-slate-500">
+              {dict.note}
+            </p>
+
+            <ul className="mt-9 flex flex-col divide-y divide-line border-y border-line sm:flex-row sm:divide-x sm:divide-y-0">
+              {dict.marks.map((mark) => (
+                <li
+                  key={mark}
+                  className="flex items-start gap-2.5 py-3.5 sm:flex-1 sm:px-4 sm:py-4 sm:first:pl-0 sm:last:pr-0"
                 >
-                  {dict.primary}
-                </Button>
-                <Button href={href(locale, "programmes")} size="lg" variant="outline">
-                  {dict.secondary}
-                </Button>
-              </div>
-              <p className="mt-4 max-w-md text-[0.8125rem] leading-relaxed text-slate-500">
-                {dict.note}
-              </p>
-            </Reveal>
-
-            <Reveal delay={240}>
-              <ul className="mt-9 flex flex-col divide-y divide-line border-y border-line sm:flex-row sm:divide-x sm:divide-y-0">
-                {dict.marks.map((mark) => (
-                  <li
-                    key={mark}
-                    className="flex items-start gap-2.5 py-3.5 sm:flex-1 sm:px-4 sm:py-4 sm:first:pl-0 sm:last:pr-0"
-                  >
-                    <Tick className="mt-[0.2rem] text-red-500" />
-                    <span className="text-[0.8125rem] leading-snug font-medium text-navy-800">
-                      {mark}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+                  <Tick className="mt-[0.2rem] text-red-500" />
+                  <span className="text-[0.8125rem] leading-snug font-medium text-navy-800">
+                    {mark}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* ── Right: the portrait plate ──────────────────────────────── */}
-          <Reveal delay={120} y={16} className="lg:col-span-5">
+          <div className="lg:col-span-5">
             <figure className="relative mx-auto w-full max-w-md lg:max-w-none">
               <BrandRule className="mb-3.5" />
               <div className="relative overflow-hidden rounded-2xl border border-line bg-navy-900 shadow-card">
@@ -131,23 +125,35 @@ export function HomeHero({
                 </div>
               </div>
 
-              <StatCard
-                as="figcaption"
-                size="md"
-                className="absolute -bottom-4 left-3 w-[12.75rem] p-5 shadow-lift sm:-bottom-6 sm:-left-6 sm:w-[13.5rem] sm:p-5"
-                value={
-                  <CountUp
-                    locale={locale}
-                    value={statValue("passRate", year)}
-                    decimals={stats.passRate.decimals ?? 0}
-                    prefix={stats.passRate.prefix ?? ""}
-                    suffix={stats.passRate.suffix ?? ""}
-                  />
-                }
-                label={passRateLabel}
-              />
+              {/*
+                The figure and its qualification are one caption. A pass rate
+                printed beside the Cambridge badge with nothing saying whose
+                candidates it counts reads as a Cambridge statistic, and it is
+                not one — it is ours. The line below says so where the figure is,
+                not two sections further down the page.
+              */}
+              <figcaption>
+                <StatCard
+                  size="md"
+                  className="absolute -bottom-4 left-3 w-[12.75rem] p-5 shadow-lift sm:-bottom-6 sm:-left-6 sm:w-[13.5rem] sm:p-5"
+                  value={
+                    <CountUp
+                      locale={locale}
+                      value={statValue("passRate", year)}
+                      decimals={stats.passRate.decimals ?? 0}
+                      prefix={stats.passRate.prefix ?? ""}
+                      suffix={stats.passRate.suffix ?? ""}
+                    />
+                  }
+                  label={passRate.label}
+                />
+
+                <p className="mt-10 text-[0.75rem] leading-[1.6] text-slate-500 sm:mt-12">
+                  {passRate.caption}
+                </p>
+              </figcaption>
             </figure>
-          </Reveal>
+          </div>
         </div>
       </Container>
     </section>

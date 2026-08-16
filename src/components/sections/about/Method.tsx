@@ -51,7 +51,9 @@ export function Method({ t, index }: { t: AboutDict["method"]; index: number }) 
           {t.pillars.map((pillar, i) => (
             <Reveal as="li" key={pillar.title} delay={Math.min(i, 3) * 60}>
               <StepNumber n={i + 1} />
-              <h3 className="mt-5 text-[1.1875rem] leading-snug font-semibold text-navy-900">
+              {/* text-xl is the step title across the site — see home/Method,
+                  home/Enrol and the placement steps on /programmes. */}
+              <h3 className="mt-5 text-xl leading-snug font-semibold text-navy-900">
                 {pillar.title}
               </h3>
               <p className="mt-3 text-[0.9375rem] leading-[1.7] text-slate-600">

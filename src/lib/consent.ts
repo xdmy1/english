@@ -71,6 +71,14 @@ export function writeConsent(next: Pick<ConsentState, "analytics" | "maps">): Co
   return value;
 }
 
+/**
+ * Erases the record entirely, so the visitor is asked again from scratch.
+ *
+ * Deliberately NOT what the footer's "Cookie settings" link does — that reopens
+ * the banner seeded with the stored answers, because destroying the record is a
+ * worse default than showing it: it loses the timestamp and the banner version,
+ * which are the two things that evidence what was agreed and when.
+ */
 export function clearConsent() {
   document.cookie = `${CONSENT_COOKIE}=; path=/; max-age=0; samesite=lax`;
   window.dispatchEvent(new CustomEvent<ConsentState | null>(EVENT, { detail: null }));

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { site } from "@/data/site";
 import type { Locale } from "@/i18n/config";
@@ -19,6 +19,18 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
   const active = routeKeyFromPathname(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [barFocused, setBarFocused] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+
+  /*
+    The utility bar slides away on scroll, and hiding it means inerting it —
+    which, per the HTML spec, blurs whatever is focused inside. The bar holds
+    the only language switcher outside the footer, so a keyboard reader who
+    scrolls while it is focused loses their place and cannot get back to it
+    without returning to the very top. While it holds focus, it stays.
+  */
+  const utilityHidden = scrolled && !barFocused;
 
   useEffect(() => {
     let frame = 0;
@@ -43,18 +55,91 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
     if (menuOpen) setMenuOpen(false);
   }
 
-  // Lock the page behind the sheet while it is open.
+  /*
+    The sheet covers the page, locks its scroll and closes on Escape, so it is
+    a modal dialog and has to behave like one: focus moves into it, stays in it
+    while it is up, and goes back to the button that opened it. Without the
+    trap, Shift+Tab walks backwards into content that is sitting underneath an
+    opaque panel (WCAG 2.4.11), and closing inerts the subtree around whatever
+    is focused, which drops focus on <body>.
+  */
   useEffect(() => {
-    if (!menuOpen) return;
+    const sheet = sheetRef.current;
+    if (!menuOpen || !sheet) return;
+
+    const burger = burgerRef.current;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+    sheet.focus();
+
+    /*
+      The ring in document order: the burger comes first, because it is also
+      this panel's close button and would otherwise be unreachable, and the
+      sheet's own controls follow it. Anything inside an inert subtree — the
+      language menu while it is shut — is not a stop.
+    */
+    const stops = () => {
+      const inside = Array.from(
+        sheet.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+      ).filter((element) => !element.closest("[inert]"));
+      return burger ? [burger, ...inside] : inside;
     };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        // A popup inside the sheet — the language menu — answers Escape first.
+        if (sheet.querySelector('[aria-expanded="true"]')) return;
+        setMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const items = stops();
+      if (items.length === 0) return;
+
+      const active = document.activeElement as HTMLElement | null;
+      const index = active ? items.indexOf(active) : -1;
+
+      // The container sits between the burger and the panel's own links in
+      // document order, so tabbing off it needs no help.
+      if (index === -1 && active === sheet) return;
+
+      if (index === -1) {
+        event.preventDefault();
+        (event.shiftKey ? items[items.length - 1]! : items[0]!).focus();
+        return;
+      }
+
+      const next = index + (event.shiftKey ? -1 : 1);
+      if (next < 0) {
+        event.preventDefault();
+        items[items.length - 1]!.focus();
+      } else if (next >= items.length) {
+        event.preventDefault();
+        items[0]!.focus();
+      }
+    };
+
+    // The sheet is lg:hidden. If the viewport crosses that line while it is
+    // open, close it: otherwise the scroll lock and the trap survive around a
+    // panel that is no longer painted.
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const onBreakpoint = (event: MediaQueryListEvent) => {
+      if (event.matches) setMenuOpen(false);
+    };
+
     document.addEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onBreakpoint);
     return () => {
       document.body.style.overflow = previous;
       document.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onBreakpoint);
+      if (
+        sheet.contains(document.activeElement) ||
+        document.activeElement === document.body
+      ) {
+        burger?.focus();
+      }
     };
   }, [menuOpen]);
 
@@ -70,7 +155,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
       <header
         className={cn(
           "sticky top-0 z-50 transition-transform duration-300 ease-out-quint",
-          scrolled ? "-translate-y-9" : "translate-y-0",
+          utilityHidden ? "-translate-y-9" : "translate-y-0",
         )}
       >
         {/*
@@ -80,15 +165,26 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
           painted underneath the main bar and cannot be clicked.
         */}
         <div
-          aria-hidden={scrolled}
-          inert={scrolled}
+          aria-hidden={utilityHidden}
+          inert={utilityHidden}
+          onFocus={() => setBarFocused(true)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setBarFocused(false);
+            }
+          }}
           className={cn(
             "grain relative z-20 bg-navy-900 text-navy-200 transition-opacity duration-200 ease-out-quint",
-            scrolled ? "opacity-0" : "opacity-100",
+            utilityHidden ? "opacity-0" : "opacity-100",
           )}
         >
           <Container className="flex h-9 items-center justify-between gap-6">
-            <p className="truncate text-2xs font-medium tracking-[0.08em] uppercase">
+            {/* Clipped on narrow phones, and RO/RU are longer than EN — the
+                title is the only way back to the rest of the sentence. */}
+            <p
+              title={dict.brand.tagline}
+              className="truncate text-2xs font-medium tracking-[0.08em] uppercase"
+            >
               {dict.brand.tagline}
             </p>
             <div className="flex items-center gap-4">
@@ -103,6 +199,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
                 locale={locale}
                 labels={dict.language}
                 tone="light"
+                // A menu left open behind the hidden bar reappears open on the
+                // way back up, which nobody asked for.
+                forceClosed={utilityHidden}
                 className="[&>button]:h-6 [&>button]:border-white/20 [&>button]:px-2 [&>button]:text-[0.6875rem]"
               />
             </div>
@@ -177,6 +276,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
               </Button>
 
               <button
+                ref={burgerRef}
                 type="button"
                 onClick={() => setMenuOpen((value) => !value)}
                 aria-expanded={menuOpen}
@@ -205,47 +305,56 @@ export function Header({ locale, dict }: { locale: Locale; dict: CommonDict }) {
       */}
       <div
         id="mobile-menu"
+        ref={sheetRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={dict.navLabel.main}
+        tabIndex={-1}
         inert={!menuOpen}
         className={cn(
-          "fixed inset-x-0 top-[var(--sheet-top)] bottom-0 z-40 overflow-y-auto overscroll-contain bg-white lg:hidden",
+          // Above the consent notice (z-60), which is full-width on a phone and
+          // otherwise covers this panel's language menu and its phone button.
+          "fixed inset-x-0 top-[var(--sheet-top)] bottom-0 z-[70] overflow-y-auto overscroll-contain bg-white lg:hidden",
           "transition-[opacity,transform,visibility] duration-300 ease-drawer",
+          // The offset has to follow the bar it hangs from: 2.25rem of utility
+          // strip over a main bar that is h-16 below sm and h-18 from sm up.
+          utilityHidden
+            ? "[--sheet-top:4rem] sm:[--sheet-top:4.5rem]"
+            : "[--sheet-top:6.25rem] sm:[--sheet-top:6.75rem]",
           menuOpen
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-2 opacity-0",
         )}
-        style={
-          {
-            "--sheet-top": scrolled ? "4rem" : "6.25rem",
-          } as React.CSSProperties
-        }
       >
         <Container className="flex min-h-full flex-col py-8">
-          <ul className="flex flex-col">
-            {primaryNav.map((key, index) => (
-              <li key={key}>
-                <Link
-                  href={href(locale, key)}
-                  aria-current={active === key ? "page" : undefined}
-                  style={{
-                    transitionDelay: menuOpen ? `${60 + index * 40}ms` : "0ms",
-                  }}
-                  className={cn(
-                    "font-display flex items-baseline gap-4 border-b border-line py-4 text-2xl font-medium tracking-[-0.01em]",
-                    "transition-[opacity,transform] duration-300 ease-out-quint",
-                    menuOpen
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-2 opacity-0",
-                    active === key ? "text-navy-900" : "text-slate-700",
-                  )}
-                >
-                  <span className="w-6 shrink-0 text-xs font-semibold text-red-500 tabular-nums">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {dict.nav[key]}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <nav aria-label={dict.navLabel.main}>
+            <ul className="flex flex-col">
+              {primaryNav.map((key, index) => (
+                <li key={key}>
+                  <Link
+                    href={href(locale, key)}
+                    aria-current={active === key ? "page" : undefined}
+                    style={{
+                      transitionDelay: menuOpen ? `${60 + index * 40}ms` : "0ms",
+                    }}
+                    className={cn(
+                      "font-display flex items-baseline gap-4 border-b border-line py-4 text-2xl font-medium tracking-[-0.01em]",
+                      "transition-[opacity,transform] duration-300 ease-out-quint",
+                      menuOpen
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-2 opacity-0",
+                      active === key ? "text-navy-900" : "text-slate-700",
+                    )}
+                  >
+                    <span className="w-6 shrink-0 text-xs font-semibold text-red-500 tabular-nums">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {dict.nav[key]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           <div className="mt-8 flex flex-col gap-3">
             <Button href={href(locale, "apply")} size="lg" className="w-full">

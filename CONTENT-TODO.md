@@ -189,5 +189,11 @@ other's work. Five things they could not decide without you:
   If you collect three or four real ones with permission to publish, they are worth adding.
 - **A Romanian-language URL scheme.** Right now every language uses the same English paths
   (`/ro/about`). Localised paths (`/ro/despre-noi`) would help you rank for Romanian searches.
-- **Analytics.** If you want them, a cookieless option (Plausible, Umami) avoids the consent banner
-  question entirely.
+- **Analytics.** There are none, and the cookie banner deliberately offers no analytics toggle —
+  asking consent for something that does not run is just confusing. The cookie policy already
+  promises that a category will appear in the banner, switched off by default, if measurement is ever
+  added. To add it: put the toggle back in `CookieConsent.tsx`, restore `categories.analytics` in
+  `types.ts` and the three dictionaries, and add a row to the cookie table. The `analytics` field in
+  the consent record already exists and is already respected — `useConsentFor("analytics")` is the
+  gate to load the script behind. A cookieless option (Plausible, Umami) would avoid the question
+  entirely.

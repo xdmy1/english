@@ -72,9 +72,6 @@
   --ease-in-out-quint: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
-  /* --- Layout ------------------------------------------------------------ */
-  --spacing-header: 4.5rem;
-
   /* --- Shadows: navy-tinted, never neutral black ------------------------- */
   --shadow-card: 0 1px 2px rgb(15 30 82 / 0.04), 0 8px 24px -12px rgb(15 30 82 / 0.14);
   --shadow-lift: 0 2px 4px rgb(15 30 82 / 0.05), 0 18px 40px -18px rgb(15 30 82 / 0.24);
@@ -88,6 +85,13 @@
 @layer base {
   :root {
     color-scheme: light;
+    /*
+      The sticky header's height in its scrolled state — the utility bar has
+      slid away by then, leaving the main bar alone (h-18 from sm up). Anchor
+      offsets are what this feeds, and you only land on an anchor after
+      scrolling, so the scrolled height is the one that matters. Sole source:
+      every `top-[calc(var(--header-h)+…)]` on the site reads it from here.
+    */
     --header-h: 4.5rem;
   }
 
@@ -135,17 +139,12 @@
   }
 
   /*
-    A two-tone ring: white inside, navy outside. One of the two always clears
-    3:1 (WCAG 1.4.11) whichever ground it lands on — a single navy ring is
-    1.7:1 against the navy sections, which fails. The transparent outline is
-    there so Windows forced-colors mode still paints a system focus ring.
+    Rounds the ring on anything that has no radius of its own — an inline
+    link, mostly. It stays in the base layer, below the utilities, precisely
+    so `rounded-full` on a button still wins. Only the ring itself has to
+    outrank a utility, and that half lives in the overrides layer.
   */
   :focus-visible {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow:
-      0 0 0 2px #fff,
-      0 0 0 5px var(--color-navy-700);
     border-radius: 3px;
   }
 
@@ -167,7 +166,11 @@
                                      not React has hydrated
 
      Without the gate, every page ships its content at opacity:0 and a visitor
-     on a slow connection stares at an empty screen until the bundle arrives. */
+     on a slow connection stares at an empty screen until the bundle arrives.
+
+     No will-change here on purpose: a page carries 80–90 reveals and almost
+     all of them are still waiting, so the hint would ask the compositor for
+     ~90 layers at first paint to accelerate one 520ms opacity fade each. */
 
   html[data-js] .reveal {
     opacity: 0;
@@ -175,14 +178,12 @@
     transition:
       opacity 520ms var(--ease-out-quint) var(--reveal-delay, 0ms),
       transform 520ms var(--ease-out-quint) var(--reveal-delay, 0ms);
-    will-change: opacity, transform;
     animation: reveal-failsafe 1ms linear 1200ms forwards;
   }
 
   html[data-js] .reveal[data-shown] {
     opacity: 1;
     transform: none;
-    will-change: auto;
     animation: none;
   }
 
@@ -281,7 +282,7 @@
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0% 1px;
-  transition: background-size 260ms var(--ease-out-quint);
+  transition: background-size 220ms var(--ease-out-quint);
 
   @variant can-hover {
     &:hover {
@@ -291,14 +292,6 @@
 
   &:focus-visible {
     background-size: 100% 1px;
-  }
-}
-
-@utility press {
-  transition: transform 160ms var(--ease-out-quint);
-
-  &:active {
-    transform: scale(0.97);
   }
 }
 
@@ -317,5 +310,59 @@
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Overrides                                                                 */
+/* ------------------------------------------------------------------------- */
+
+/*
+  This layer is declared last, so everything in it outranks a Tailwind utility
+  sitting on the same element. Only two rules need that, and both were losing
+  the fight silently:
+
+    • the focus ring is a box-shadow, and any `shadow-*` class — Button's
+      primary elevation, for one — is a box-shadow too. The ring lived in the
+      base layer, so the utility won and the site's main call to action had no
+      visible focus indicator at all.
+
+    • `press` sets transition-property: transform, and every `transition-*`
+      class sets transition-property as well. Six controls pair the two, and
+      on all six the press affordance snapped instead of easing.
+
+  Nothing else belongs here. Reach for a normal utility first.
+*/
+@layer overrides {
+  /*
+    A two-tone ring: white inside, navy outside. One of the two always clears
+    3:1 (WCAG 1.4.11) whichever ground it lands on — a single navy ring is
+    1.7:1 against the navy sections, which fails. The transparent outline is
+    there so Windows forced-colors mode still paints a system focus ring.
+    Its radius is set in the base layer; see the note there.
+  */
+  :focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 5px var(--color-navy-700);
+  }
+
+  /*
+    The colour properties are named alongside transform because CSS cannot
+    merge two transition-property lists: whichever rule wins replaces the
+    other outright, so the winner has to carry both. Duration and easing read
+    Tailwind's own variables, so `duration-*` and `ease-*` on the element
+    still apply and 160ms is only the default.
+  */
+  .press {
+    transition-property: transform, color, background-color, border-color;
+    transition-duration: var(--tw-duration, 160ms);
+    transition-timing-function: var(--tw-ease, var(--ease-out-quint));
+  }
+
+  .press:active {
+    transform: scale(0.97);
   }
 }

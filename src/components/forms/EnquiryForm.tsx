@@ -10,12 +10,26 @@ import { format, splitOn } from "@/i18n/format";
 import { href } from "@/i18n/routes";
 import type { ApplyDict, ProgrammesDict } from "@/i18n/types";
 import { cn } from "@/lib/cn";
-import { collectErrors, enquirySchema, schedulePreferences } from "@/lib/enquiry";
+import {
+  collectErrors,
+  enquirySchema,
+  schedulePreferences,
+  NAME_MIN_LENGTH,
+} from "@/lib/enquiry";
 import { submitEnquiry } from "@/lib/submit-enquiry";
 import { ArrowRight, Button } from "@/components/ui/Button";
 import { NotePanel } from "@/components/ui/Note";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+const learnerTypes = ["child", "self"] as const;
+
+/**
+ * No `behavior` on purpose. An explicit value overrides the computed
+ * `scroll-behavior`, which is what globals.css switches to `auto` under
+ * prefers-reduced-motion; leaving it out keeps that setting in charge.
+ */
+const centreInView: ScrollIntoViewOptions = { block: "center" };
 
 export function EnquiryForm({
   locale,
@@ -42,10 +56,14 @@ export function EnquiryForm({
   const f = dict.form;
   const v = dict.validation;
 
+  /** The three dictionaries still carry this guidance as the message field's
+      placeholder; `hint` is where it belongs, and wins once it is written. */
+  const messageHint = f.fields.message.hint ?? f.fields.message.placeholder;
+
   const messageFor = (field: string): string | undefined => {
     const key = errors[field];
     if (!key) return undefined;
-    if (key === "minLength") return format(v.minLength, { n: 2 });
+    if (key === "minLength") return format(v.minLength, { n: NAME_MIN_LENGTH });
     return (v as unknown as Record<string, string>)[key] ?? v.required;
   };
 
@@ -77,12 +95,12 @@ export function EnquiryForm({
 
     const parsed = enquirySchema.safeParse(raw);
     if (!parsed.success) {
-      const next = collectErrors(parsed.error);
+      const next = collectErrors(parsed.error, raw);
       setErrors(next);
       setStatus("idle");
       requestAnimationFrame(() => {
         summaryRef.current?.focus();
-        summaryRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+        summaryRef.current?.scrollIntoView(centreInView);
       });
       return;
     }
@@ -95,7 +113,10 @@ export function EnquiryForm({
     const labels = {
       programme:
         values.programme === "unsure"
-          ? f.fields.programme.placeholder ?? "Not sure yet"
+          ? // Whatever the visitor saw on the first option, never an English
+            // literal. A dictionary without one leaves the option blank, and
+            // the em dash is how the email marks every other unanswered field.
+            (f.fields.programme.placeholder ?? "—")
           : programmes.items[values.programme].name,
       level:
         values.level === "unknown"
@@ -110,9 +131,7 @@ export function EnquiryForm({
       if (result.ok) {
         setStatus("success");
         form.reset();
-        requestAnimationFrame(() =>
-          formRef.current?.scrollIntoView({ block: "center", behavior: "smooth" }),
-        );
+        requestAnimationFrame(() => formRef.current?.scrollIntoView(centreInView));
         return;
       }
 
@@ -121,6 +140,46 @@ export function EnquiryForm({
     } catch {
       setStatus("error");
     }
+  }
+
+  /**
+   * role="radio" is a promise about the keyboard: the arrows move between the
+   * options and select as they go, Home and End jump to the ends. Without it
+   * the group is two unrelated toggles wearing the wrong ARIA.
+   */
+  function onLearnerKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    const count = learnerTypes.length;
+    const current = learnerTypes.indexOf(learnerType);
+    let index: number;
+
+    switch (event.key) {
+      case "ArrowRight":
+      case "ArrowDown":
+        index = (current + 1) % count;
+        break;
+      case "ArrowLeft":
+      case "ArrowUp":
+        index = (current - 1 + count) % count;
+        break;
+      case "Home":
+        index = 0;
+        break;
+      case "End":
+        index = count - 1;
+        break;
+      default:
+        return;
+    }
+
+    const next = learnerTypes[index];
+    if (!next) return;
+
+    event.preventDefault();
+    setLearnerType(next);
+
+    // Selection follows focus in a radiogroup, so focus moves with it.
+    const options = event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]');
+    options[index]?.focus();
   }
 
   if (status === "success") {
@@ -149,6 +208,9 @@ export function EnquiryForm({
   }
 
   const errorCount = Object.keys(errors).length;
+  const showSummary = errorCount > 0 || status === "error";
+  /** Delivery failed rather than the answers being wrong. */
+  const deliveryFailed = status === "error" && errorCount === 0;
 
   return (
     <form
@@ -174,26 +236,30 @@ export function EnquiryForm({
       />
 
       {/* Collapsed with a grid row, never a height: the panel is measured by
-          the browser, so a long translation can never be clipped. */}
+          the browser, so a long translation can never be clipped. It stays in
+          the DOM so it can animate, and is inert while collapsed — a zero-high
+          overflow-hidden box is still read out, so without this a visitor
+          arriving at the form is told to check the highlighted fields. */}
       <div
         ref={summaryRef}
         tabIndex={-1}
-        role={errorCount > 0 || status === "error" ? "alert" : undefined}
+        role={showSummary ? "alert" : undefined}
+        inert={!showSummary}
         className={cn(
           "grid transition-[grid-template-rows,opacity] duration-300 ease-out-quint",
-          errorCount > 0 || status === "error"
-            ? "mb-7 grid-rows-[1fr] opacity-100"
-            : "mb-0 grid-rows-[0fr] opacity-0",
+          showSummary ? "mb-7 grid-rows-[1fr] opacity-100" : "mb-0 grid-rows-[0fr] opacity-0",
         )}
       >
         <div className="min-h-0 overflow-hidden">
           <div className="rounded-xl border border-red-200 bg-red-50 p-4">
             <p className="text-sm font-semibold text-red-700">
-              {status === "error" && errorCount === 0 ? dict.failure.title : v.summary}
+              {deliveryFailed ? dict.failure.title : v.summary}
             </p>
-            <p className="mt-1 text-[0.8125rem] leading-relaxed text-red-800/80">
-              {status === "error" && errorCount === 0 ? dict.failure.body : ""}
-            </p>
+            {deliveryFailed ? (
+              <p className="mt-1 text-[0.8125rem] leading-relaxed text-red-800/80">
+                {dict.failure.body}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>
@@ -207,14 +273,18 @@ export function EnquiryForm({
           <div
             role="radiogroup"
             aria-label={f.fields.learnerType.label}
+            onKeyDown={onLearnerKeyDown}
             className="inline-flex rounded-full border border-line bg-slate-50 p-1"
           >
-            {(["child", "self"] as const).map((value) => (
+            {learnerTypes.map((value) => (
               <button
                 key={value}
                 type="button"
                 role="radio"
                 aria-checked={learnerType === value}
+                // One tab stop for the group, as the radio role promises;
+                // the arrow keys move between the options.
+                tabIndex={learnerType === value ? 0 : -1}
                 onClick={() => setLearnerType(value)}
                 className={cn(
                   "press rounded-full px-4 py-2 text-[0.8125rem] font-semibold transition-colors duration-200 ease-out-quint",
@@ -356,9 +426,18 @@ export function EnquiryForm({
             name="message"
             rows={4}
             maxLength={2000}
-            placeholder={f.fields.message.placeholder}
+            aria-describedby={messageHint ? "message-hint" : undefined}
             className={inputClasses(false)}
           />
+          {/* Under the box, not inside it. This line asks the writer to leave
+              health and special-needs details out — Art. 9 data we have no
+              basis to receive — and as placeholder text it disappeared on the
+              first keystroke, which is the moment it has to be on screen. */}
+          {messageHint ? (
+            <p id="message-hint" className="mt-1.5 text-[0.8125rem] text-slate-500">
+              {messageHint}
+            </p>
+          ) : null}
         </div>
       </Fieldset>
 
@@ -394,12 +473,15 @@ export function EnquiryForm({
 
 function inputClasses(invalid: boolean) {
   return cn(
-    "w-full rounded-xl border bg-white px-4 py-3 text-[0.9375rem] text-navy-900 placeholder:text-slate-400",
+    "w-full rounded-xl border bg-white px-4 py-3 text-[0.9375rem] text-navy-900 placeholder:text-slate-500",
     "transition-[border-color,box-shadow] duration-200 ease-out-quint",
     // Let the global two-tone focus ring in globals.css do the work; a 12%
     // navy ring on white is 1.3:1 and effectively invisible.
     "focus-visible:border-navy-600",
-    invalid ? "border-red-400 bg-red-50/40" : "border-slate-200 can-hover:hover:border-slate-300",
+    // A white field on a white card is identified by its border alone, so the
+    // border has to carry 3:1 (WCAG 1.4.11). The hairline used everywhere else
+    // is 1.26:1 here, which is a form that reads as a blank panel.
+    invalid ? "border-red-400 bg-red-50/40" : "border-slate-500 can-hover:hover:border-navy-600",
   );
 }
 
@@ -431,7 +513,7 @@ function FieldLabel({
     >
       {label}
       {requiredLabel ? (
-        <span className="text-2xs font-medium tracking-[0.06em] text-slate-400 uppercase">
+        <span className="text-2xs font-medium tracking-[0.06em] text-slate-500 uppercase">
           {requiredLabel}
         </span>
       ) : null}
@@ -533,7 +615,7 @@ function SelectField({
           viewBox="0 0 12 12"
           fill="none"
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 right-4 size-3 -translate-y-1/2 text-slate-400"
+          className="pointer-events-none absolute top-1/2 right-4 size-3 -translate-y-1/2 text-slate-500"
         >
           <path d="m3 4.5 3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -573,11 +655,12 @@ function Checkbox({
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           className={cn(
-            "mt-0.5 size-[1.15rem] shrink-0 cursor-pointer appearance-none rounded-[0.3rem] border bg-white",
+            "mt-0.5 size-[1.15rem] shrink-0 cursor-pointer appearance-none rounded-md border bg-white",
             "transition-[background-color,border-color] duration-150 ease-out-quint",
             "checked:border-navy-800 checked:bg-navy-800",
             "checked:bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22 fill=%22none%22><path d=%22m3.5 8.5 3 3 6-6%22 stroke=%22white%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>')] checked:bg-center checked:bg-no-repeat",
-            error ? "border-red-400" : "border-slate-300",
+            // Unchecked, the box is white on white: the border is the control.
+            error ? "border-red-400" : "border-slate-500",
           )}
         />
         <label htmlFor={id} className="text-[0.875rem] leading-relaxed text-slate-600">

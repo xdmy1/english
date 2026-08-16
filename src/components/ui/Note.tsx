@@ -77,7 +77,9 @@ export function NotePanel({
       {centered ? (
         <span aria-hidden="true" className="brand-rule mx-auto mb-5 block h-[6px] w-10" />
       ) : (
-        <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-red-500" />
+        // The same leading-edge marker as the apply page and the legal pages:
+        // the brand's navy-over-red rule, not red on its own.
+        <span aria-hidden="true" className="brand-rule absolute inset-y-0 left-0 w-[3px]" />
       )}
 
       <div className={cn("flex gap-4", centered && "flex-col items-center")}>

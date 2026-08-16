@@ -20,10 +20,22 @@ const warnings = [];
 
 /* ── 1. PLACEHOLDER markers in the data layer ────────────────────────────── */
 
+/** Lines that mention PLACEHOLDER as code rather than as unfilled data. */
+const isMachinery = (line) => {
+  const t = line.trimStart();
+  return (
+    t.startsWith("*") ||
+    t.startsWith("//") ||
+    t.startsWith("import ") ||
+    t.startsWith("return ") ||
+    t.includes("export const PLACEHOLDER")
+  );
+};
+
 for (const file of ["src/data/site.ts", "src/data/team.ts", "src/data/catalogue.ts"]) {
   const source = read(file);
   source.split("\n").forEach((line, index) => {
-    if (line.includes("PLACEHOLDER") && !line.trimStart().startsWith("*") && !line.includes("export const PLACEHOLDER")) {
+    if (line.includes("PLACEHOLDER") && !isMachinery(line)) {
       problems.push(`${file}:${index + 1}  ${line.trim()}`);
     }
   });

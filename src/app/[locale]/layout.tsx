@@ -20,6 +20,16 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+/**
+ * Two figures on this site are derived from the current year: the copyright line
+ * below and the "years teaching" count on the home and about pages. Prerendered
+ * once and cached for a year, both would be wrong from the first of January
+ * until somebody happened to redeploy. A day is short enough that neither can be
+ * stale by the time anybody notices, and long enough that the pages are still
+ * served from the edge. Inherited by every route under this layout.
+ */
+export const revalidate = 86400;
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   if (!isLocale(locale)) return {};

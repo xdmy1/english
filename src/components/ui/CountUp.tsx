@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { localeMeta, type Locale } from "@/i18n/config";
 
@@ -40,10 +40,16 @@ export function CountUp({
   const [display, setDisplay] = useState(value);
   const animated = useRef(false);
 
-  const formatter = new Intl.NumberFormat(localeMeta[locale].intl, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  });
+  // Memoised because the count is ~90 renders long: building an
+  // Intl.NumberFormat per frame spends the animation budget in ICU setup.
+  const formatter = useMemo(
+    () =>
+      new Intl.NumberFormat(localeMeta[locale].intl, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      }),
+    [locale, decimals],
+  );
 
   useIsomorphicLayoutEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

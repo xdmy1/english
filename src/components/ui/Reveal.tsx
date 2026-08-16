@@ -2,15 +2,51 @@
 
 import { useEffect, useRef, type ElementType, type ReactNode } from "react";
 
-import { cn } from "@/lib/cn";
+/*
+  One observer and one media query for the whole document. A page carries
+  80–90 reveals; giving each its own IntersectionObserver — and its own
+  getBoundingClientRect, interleaved with the attribute writes of the reveal
+  before it — turned the hydration commit into dozens of forced reflows.
+
+  The manual "am I above the fold?" measurement is gone with it: the bottom
+  rootMargin already shrinks the viewport by 8%, so the observer's first
+  callback reports exactly the elements the measurement used to catch.
+*/
+let observer: IntersectionObserver | null = null;
+const waiting = new WeakMap<Element, () => void>();
+let reducedMotion: MediaQueryList | null = null;
+
+function watch(node: Element, show: () => void) {
+  observer ??= new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        waiting.get(entry.target)?.();
+        waiting.delete(entry.target);
+        observer?.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.01 },
+  );
+
+  waiting.set(node, show);
+  observer.observe(node);
+
+  return () => {
+    waiting.delete(node);
+    observer?.unobserve(node);
+  };
+}
 
 /**
- * Scroll reveal. Deliberately small: 10px of travel and 480ms, once only.
+ * Scroll reveal. Deliberately small: 10px of travel and 520ms, once only.
  * The transition is plain CSS so it keeps running off the main thread while
  * the rest of the page is still loading.
  *
- * Content is always present in the HTML — only opacity is animated — and a
- * <noscript> rule below un-hides everything when JavaScript is unavailable.
+ * Content is always present in the HTML, and globals.css only hides it once
+ * an inline head script has confirmed JavaScript is running — see the note
+ * beside the `.reveal` rule. Keep first-viewport content out of here anyway:
+ * an LCP element that waits for hydration is an LCP element measured late.
  */
 export function Reveal({
   children,
@@ -36,38 +72,23 @@ export function Reveal({
     // attribute avoids a render pass per element on a page that has dozens.
     const show = () => node.setAttribute("data-shown", "");
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    reducedMotion ??= window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) {
       show();
       return;
     }
 
-    // Already in view on first paint (above the fold) — show without waiting.
-    if (node.getBoundingClientRect().top < window.innerHeight * 0.92) {
-      show();
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            show();
-            observer.disconnect();
-          }
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.01 },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
+    return watch(node, show);
   }, []);
 
   return (
     <As
       ref={ref}
       data-reveal=""
-      className={cn("reveal", className)}
+      // Joined rather than merged: "reveal" is a base-layer class of our own
+      // and shares no conflict group with anything a caller can pass, so the
+      // tailwind-merge pass was 80-odd no-ops per page during hydration.
+      className={className ? `reveal ${className}` : "reveal"}
       style={
         {
           "--reveal-delay": `${delay}ms`,

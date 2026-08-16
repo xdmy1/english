@@ -24,9 +24,13 @@ export function HomeSimulation({
 
   return (
     <Section id="simulation" tone="navy" className="overflow-hidden">
+      {/* Inverted, as PageHero does with `ruled` on its navy masthead:
+          grid-paper draws navy lines at 5%, which on a navy ground is a colour
+          difference of about one part in 255 — the motif was being painted and
+          not seen. */}
       <div
         aria-hidden="true"
-        className="grid-paper pointer-events-none absolute inset-0 opacity-60"
+        className="grid-paper pointer-events-none absolute inset-0 opacity-60 invert"
       />
 
       <Container className="relative">

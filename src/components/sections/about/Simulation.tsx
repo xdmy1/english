@@ -20,12 +20,25 @@ export function Simulation({
   return (
     <Section id="simulation" tone="chalk">
       <Container>
+        {/*
+          The opening date sits above the lead, as it does in the home page's
+          simulation section — not in the `actions` slot, which every other
+          section on the site fills with a button. A red-filled pill in the place
+          a reader expects a call to action gets clicked, and red is punctuation
+          here, never a field.
+        */}
         <SectionHeading
           eyebrow={t.header.eyebrow}
           title={t.header.title}
-          lead={t.header.lead}
           index={index}
-          actions={<Tag tone="red">{t.badge}</Tag>}
+          lead={
+            <>
+              <span className="mb-5 block">
+                <Tag>{t.badge}</Tag>
+              </span>
+              {t.header.lead}
+            </>
+          }
         />
 
         <div className="mt-14 grid items-center gap-10 sm:mt-16 lg:grid-cols-12 lg:gap-16">

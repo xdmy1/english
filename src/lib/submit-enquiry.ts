@@ -27,6 +27,13 @@ import type { EnquiryResponse, EnquiryValues } from "./enquiry";
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
+/**
+ * A stalled connection — captive portal, a dropped mobile link, a challenge
+ * page held open — must not leave the button spinning for ever. Aborting puts
+ * the form back into its error state, which offers the telephone number.
+ */
+const REQUEST_TIMEOUT_MS = 15_000;
+
 const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 export function deliveryMode(): "web3forms" | "server" {
@@ -59,6 +66,9 @@ async function submitToWeb3Forms(
     from_name: "The Best Indeed English Centre — website",
     // `replyto` is one lowercase word; `reply_to` is silently ignored.
     replyto: values.email,
+    // Web3Forms' own honeypot: a non-empty botcheck is dropped at their end
+    // and answered with success, so the bot is told nothing.
+    botcheck: values.botcheck ?? "",
 
     Student: who,
     Phone: values.phone,
@@ -80,6 +90,7 @@ async function submitToWeb3Forms(
       // Never x-www-form-urlencoded: that path answers 301 and trips CORS.
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
 
     // 403 challenges return HTML and 500s use a different JSON shape, so the
@@ -107,6 +118,7 @@ async function submitToServer(values: EnquiryValues): Promise<EnquiryResponse> {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
     const result = (await response.json().catch(() => null)) as EnquiryResponse | null;
     return result ?? { ok: false, reason: "upstream" };

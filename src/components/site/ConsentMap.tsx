@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 import { site, mapsLink, mapEmbedSrc } from "@/data/site";
 import type { ContactDict } from "@/i18n/types";
 import { cn } from "@/lib/cn";
@@ -20,6 +22,17 @@ export function ConsentMap({
   className?: string;
 }) {
   const { allowed, ready, allow } = useConsentFor("maps");
+  const frameRef = useRef<HTMLIFrameElement>(null);
+  const askedRef = useRef(false);
+
+  // Allowing the map swaps the panel — and the button that was just pressed —
+  // for the iframe, so focus would fall to <body> and nothing would say that
+  // anything had happened. Hand it to the frame, whose title names it.
+  useEffect(() => {
+    if (!allowed || !askedRef.current) return;
+    askedRef.current = false;
+    frameRef.current?.focus();
+  }, [allowed]);
 
   return (
     <div
@@ -30,18 +43,18 @@ export function ConsentMap({
     >
       {ready && allowed ? (
         <iframe
+          ref={frameRef}
           title={dict.title}
           src={mapEmbedSrc()}
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
+          // The embed needs no referrer at all. The inherited site policy would
+          // still send the origin; the cookie policy tells the visitor only
+          // that their IP and browser details go to the provider.
+          referrerPolicy="no-referrer"
           className="block h-full min-h-[22rem] w-full border-0"
         />
       ) : (
         <div className="grain grid-paper relative flex min-h-[22rem] flex-col justify-end bg-navy-900 p-6 sm:p-8">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_90%_at_20%_0%,rgb(40_65_149/0.55),transparent_70%)]"
-          />
           <div className="relative max-w-md">
             <Eyebrow tone="light">{dict.provider}</Eyebrow>
             <h3 className="font-display mt-3 text-2xl font-semibold text-white">
@@ -54,7 +67,15 @@ export function ConsentMap({
               {site.address.postalCode} {site.address.city}, {site.address.country}
             </address>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Button size="sm" variant="light" onClick={allow} disabled={!ready}>
+              <Button
+                size="sm"
+                variant="light"
+                onClick={() => {
+                  askedRef.current = true;
+                  allow();
+                }}
+                disabled={!ready}
+              >
                 {dict.accept}
               </Button>
               <Button size="sm" variant="lightOutline" href={mapsLink()} external>

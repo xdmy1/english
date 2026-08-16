@@ -169,7 +169,9 @@ export default async function ProgrammesPage(props: Props) {
                 className={cn(index > 0 && "md:border-l md:border-line md:pl-8")}
               >
                 <StepNumber n={index + 1} />
-                <h3 className="mt-5 text-[1.125rem] leading-snug font-semibold">
+                {/* Same object, same size as the numbered sequences on the home
+                    and about pages: a circled numeral, an h3, a paragraph. */}
+                <h3 className="mt-5 text-xl leading-snug font-semibold">
                   {step.title}
                 </h3>
                 <p className="mt-2.5 max-w-[58ch] text-[0.9375rem] leading-[1.7] text-slate-600">

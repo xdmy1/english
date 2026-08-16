@@ -8,6 +8,7 @@ import {
   type TimetableSlot,
 } from "@/components/schedule/Timetable";
 import { CtaBand } from "@/components/site/CtaBand";
+import { Card } from "@/components/ui/Card";
 import { NotePanel } from "@/components/ui/Note";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
@@ -247,9 +248,20 @@ export default async function SchedulePage(props: Props) {
               ))}
             </ol>
 
+            {/*
+              A plain card, not an <aside>. The sample-timetable notice above is
+              already a complementary landmark, and a second unnamed one only
+              gives the landmark rotor two entries reading "complementary" with
+              no way to tell them apart. These notes belong to the list beside
+              them rather than to the page.
+
+              h-1.5, not 3px: brand-rule is a 50/50 navy-over-red gradient, and
+              at 3px each band is 1.5 device pixels and blends to a muddy line.
+              Every other horizontal instance on the site is 6px.
+            */}
             <Reveal delay={120} className="lg:col-span-4 lg:col-start-9">
-              <aside className="rounded-2xl border border-line bg-white p-6 sm:p-7">
-                <span aria-hidden="true" className="brand-rule block h-[3px] w-16" />
+              <Card tone="paper">
+                <span aria-hidden="true" className="brand-rule block h-1.5 w-16" />
                 <ul className="mt-6">
                   {t.notes.map((note) => (
                     <li
@@ -260,7 +272,7 @@ export default async function SchedulePage(props: Props) {
                     </li>
                   ))}
                 </ul>
-              </aside>
+              </Card>
             </Reveal>
           </div>
         </Container>

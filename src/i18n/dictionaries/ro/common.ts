@@ -24,17 +24,16 @@ export const common: CommonDict = {
   },
   actions: {
     apply: "Solicitați un loc",
-    applyShort: "Înscriere",
     contact: "Contactați-ne",
     learnMore: "Citiți mai mult",
-    viewAll: "Vedeți toate",
-    back: "Înapoi",
     close: "Închideți",
     openMenu: "Deschideți meniul",
     closeMenu: "Închideți meniul",
     next: "Următor",
     previous: "Anterior",
     goToSlide: "Mergeți la slide-ul {n}",
+    gallery: "Galerie foto",
+    slide: "Fotografie",
     skipToContent: "Săriți la conținutul principal",
     call: "Sunați-ne",
     email: "Scrieți-ne",
@@ -63,7 +62,6 @@ export const common: CommonDict = {
     addressLabel: "Adresă",
     hoursLabel: "Program de lucru",
     rights: "© {year} {name}. Toate drepturile rezervate.",
-    credit: "Proiectat și realizat la Chișinău.",
   },
   ctaBand: {
     eyebrow: "Înscrieri",
@@ -75,7 +73,7 @@ export const common: CommonDict = {
   },
   cookieBanner: {
     title: "Cookie-urile de pe acest site",
-    body: "Două cookie-uri sunt necesare pentru funcționarea acestui site. Analiza traficului și harta încorporată rămân dezactivate până când le permiteți, iar refuzul nu vă costă nimic.",
+    body: "Două cookie-uri sunt necesare pentru funcționarea acestui site. Harta încorporată în pagina de contact rămâne dezactivată până când o permiteți, iar refuzul nu vă costă nimic.",
     acceptAll: "Acceptați toate",
     rejectAll: "Respingeți toate",
     customise: "Personalizați",
@@ -87,10 +85,6 @@ export const common: CommonDict = {
       necessary: {
         title: "Necesare",
         body: "Rețin limba pe care ați ales-o și răspunsul pe care l-ați dat acestui banner. Site-ul nu poate funcționa fără ele, așa că nu pot fi dezactivate.",
-      },
-      analytics: {
-        title: "Analiză",
-        body: "Numărători agregate ale vizitelor pe pagini, care ne arată ce pagini sunt citite. Dacă le refuzați, fiecare pagină funcționează exact ca acum.",
       },
       maps: {
         title: "Hartă",

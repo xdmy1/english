@@ -2,12 +2,16 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 import { Container, Eyebrow } from "./Section";
-import { Reveal } from "./Reveal";
 
 /**
  * The masthead every inner page opens with. Using one component here is what
  * makes About, Programmes, Team, Timetable, Contact and Apply read as one
  * publication rather than six landing pages.
+ *
+ * Nothing in here is wrapped in `Reveal`. This is the first viewport and the
+ * <h1> is the page's LCP element: revealing it would hold the largest paint
+ * back until React has hydrated, to fade in something the visitor is already
+ * looking at. Reveals start below the fold.
  */
 export function PageHero({
   eyebrow,
@@ -60,44 +64,32 @@ export function PageHero({
           )}
         >
           <div className="max-w-3xl">
-            <Reveal>
-              <Eyebrow tone={dark ? "light" : "dark"}>{eyebrow}</Eyebrow>
-            </Reveal>
+            <Eyebrow tone={dark ? "light" : "dark"}>{eyebrow}</Eyebrow>
 
-            <Reveal delay={60}>
-              <h1
-                className={cn(
-                  "mt-5 text-[2.25rem] leading-[1.05] font-semibold tracking-[-0.022em] text-balance sm:text-5xl lg:text-[3.5rem]",
-                  dark ? "text-white" : "text-navy-900",
-                )}
-              >
-                {title}
-              </h1>
-            </Reveal>
+            <h1
+              className={cn(
+                "mt-5 text-[2.25rem] leading-[1.05] font-semibold tracking-[-0.022em] text-balance sm:text-5xl lg:text-[3.5rem]",
+                dark ? "text-white" : "text-navy-900",
+              )}
+            >
+              {title}
+            </h1>
 
-            <Reveal delay={110}>
-              <p
-                className={cn(
-                  "mt-6 max-w-2xl text-[1.0625rem] leading-[1.65] sm:text-lg",
-                  dark ? "text-navy-200" : "text-slate-600",
-                )}
-              >
-                {lead}
-              </p>
-            </Reveal>
+            <p
+              className={cn(
+                "mt-6 max-w-2xl text-[1.0625rem] leading-[1.65] sm:text-lg",
+                dark ? "text-navy-200" : "text-slate-600",
+              )}
+            >
+              {lead}
+            </p>
 
             {actions ? (
-              <Reveal delay={160}>
-                <div className="mt-8 flex flex-wrap items-center gap-3">{actions}</div>
-              </Reveal>
+              <div className="mt-8 flex flex-wrap items-center gap-3">{actions}</div>
             ) : null}
           </div>
 
-          {aside ? (
-            <Reveal delay={200} className="shrink-0">
-              {aside}
-            </Reveal>
-          ) : null}
+          {aside ? <div className="shrink-0">{aside}</div> : null}
         </div>
       </Container>
     </section>

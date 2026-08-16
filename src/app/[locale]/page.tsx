@@ -24,12 +24,22 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   if (!isLocale(locale)) return {};
   const dict = await getDictionary(locale);
-  return pageMetadata({
+  const meta = pageMetadata({
     locale,
     route: "home",
     title: dict.home.seo.title,
     description: dict.home.seo.description,
   });
+
+  /*
+    title.template in the layout applies to child segments, and the home page IS
+    that segment — so it never picks up the brand the way every inner page does.
+    Stated absolutely here, with the same separator the template uses.
+  */
+  return {
+    ...meta,
+    title: { absolute: `${dict.home.seo.title} · ${site.shortName}` },
+  };
 }
 
 export default async function HomePage(props: Props) {
@@ -64,15 +74,24 @@ export default async function HomePage(props: Props) {
 
   return (
     <>
+      {/*
+        Every value here comes from src/data/site.ts, which the centre fills in
+        by hand. JSON.stringify does not escape a less-than sign, so one pasted
+        closing script tag would end this element early and spill the rest of the
+        record into the page as markup. Escaping it keeps the JSON valid and
+        leaves nothing for the HTML parser to act on.
+      */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organisation) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organisation).replace(/</g, "\\u003c"),
+        }}
       />
 
       <HomeHero
         locale={typedLocale}
         dict={t.hero}
-        passRateLabel={t.stats.labels.passRate.label}
+        passRate={t.stats.labels.passRate}
         year={year}
       />
 
@@ -84,7 +103,7 @@ export default async function HomePage(props: Props) {
         locale={typedLocale}
         dict={t.programmes}
         programmesDict={dict.programmes}
-        viewAllLabel={dict.common.actions.learnMore}
+        cardCta={dict.common.actions.learnMore}
       />
 
       <HomeSimulation locale={typedLocale} dict={t.simulation} />

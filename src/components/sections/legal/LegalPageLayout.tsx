@@ -1,8 +1,10 @@
 import { ArrowRight, Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { PageHero } from "@/components/ui/PageHero";
 import { LegalTable, Prose } from "@/components/ui/Prose";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, Eyebrow, Section } from "@/components/ui/Section";
+import { StatCard } from "@/components/ui/StatCard";
 import type { Locale } from "@/i18n/config";
 import { format } from "@/i18n/format";
 import { href } from "@/i18n/routes";
@@ -72,22 +74,18 @@ export function LegalPageLayout({
 
   return (
     <>
+      {/*
+        The aside is the same slip /about and /schedule pin to their mastheads.
+        Hand-rolling it here gave the legal pages a different corner radius, no
+        shadow and the brand rule turned on its side — three pages, one slot,
+        one object.
+      */}
       <PageHero
         eyebrow={commonDict.footer.legalTitle}
         title={page.title}
         lead={page.lead}
         tone="chalk"
-        aside={
-          <div className="flex items-center gap-4 rounded-xl border border-line bg-white px-5 py-4">
-            <span
-              aria-hidden="true"
-              className="brand-rule h-9 w-[3px] shrink-0 rounded-full"
-            />
-            <p className="text-[0.8125rem] leading-snug font-medium text-navy-800">
-              {updated}
-            </p>
-          </div>
-        }
+        aside={<StatCard size="sm" value={updated} className="lg:w-[19rem]" />}
       />
 
       <Section tone="paper" size="md">
@@ -99,7 +97,10 @@ export function LegalPageLayout({
                 aria-labelledby="legal-toc-title"
                 className={cn(
                   "rounded-2xl border border-line bg-chalk p-5 sm:p-6",
-                  "lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto",
+                  // Offset from the header token, like the other five sticky
+                  // columns; 7rem happens to equal it today and would silently
+                  // stop matching the day --header-h changes.
+                  "lg:sticky lg:top-[calc(var(--header-h)+2.5rem)] lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto",
                   "lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0",
                   "no-scrollbar",
                 )}
@@ -204,11 +205,13 @@ export function LegalPageLayout({
 
               {/* ── Where to write about this document ──────────────────── */}
               <Reveal>
-                <aside className="mt-14 rounded-2xl border border-line bg-chalk p-6 sm:mt-16 sm:p-7">
+                <Card tone="chalk" className="mt-14 sm:mt-16">
                   <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
                     <div>
                       <Eyebrow>{commonDict.nav.contact}</Eyebrow>
-                      <h2 className="mt-3 text-[1.25rem] leading-[1.25] font-semibold tracking-[-0.015em] text-navy-900 sm:text-[1.375rem]">
+                      {/* Set to the clause-heading scale used through the
+                          document above, not to a size of its own. */}
+                      <h2 className="mt-3 text-[1.3125rem] leading-[1.25] font-semibold tracking-[-0.015em] text-navy-900 sm:text-[1.5rem]">
                         {commonDict.brand.name}
                       </h2>
                       <p className="mt-2 text-[0.9375rem] leading-[1.6] text-slate-600">
@@ -226,7 +229,7 @@ export function LegalPageLayout({
                       {commonDict.actions.contact}
                     </Button>
                   </div>
-                </aside>
+                </Card>
               </Reveal>
             </div>
           </div>

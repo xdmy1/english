@@ -204,7 +204,7 @@ export const home: HomeDict = {
       {
         q: "Can a Cambridge certificate replace the BAC English exam?",
         // Translator note (RO): the official term for the awarded mark is „nota 10 din oficiu".
-        a: "It can replace the exam altogether. A certificate on the recognised list, at B2 or above overall and in reading and writing, exempts the candidate from the foreign-language paper and the top mark of 10 is recorded instead. The programmes page sets out the list, the minimum scores and the April deadline, all of which are fixed by ministerial order and revised from year to year.",
+        a: "It can replace the exam altogether. A certificate on the recognised list, at B2 or above overall and in reading and writing, exempts the candidate from the foreign-language paper and the top mark of 10 is recorded instead. The programmes page sets out which certificates are on the list and the April deadline for the dossier. The list, and the score each certificate has to reach, are fixed by ministerial order and revised from year to year, so we check the current annex with you rather than quote a figure that may have moved.",
       },
       {
         // Translator note: "Limba străină I" is the official Moldovan name of the paper. Keep the Romanian form in every language.

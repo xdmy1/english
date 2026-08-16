@@ -28,13 +28,17 @@ export function FounderFeature({
   return (
     <Container>
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <Reveal className="lg:col-span-5 lg:self-start">
+        {/*
+          Capped below lg: a full-bleed 4:5 portrait on a phone is most of a
+          screen of navy before the reader reaches a word of the text.
+        */}
+        <Reveal className="mx-auto w-full max-w-sm lg:col-span-5 lg:mx-0 lg:max-w-none lg:self-start">
           <PortraitTile
             member={founder}
             aspect="portrait"
             caption={placeholder.photo}
             captionPlacement="below"
-            sizes="(min-width: 1024px) 34vw, 100vw"
+            sizes="(min-width: 1024px) 34vw, (min-width: 640px) 24rem, 100vw"
           />
         </Reveal>
 

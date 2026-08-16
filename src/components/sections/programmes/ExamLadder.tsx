@@ -24,8 +24,18 @@ export function ExamLadder({ dict }: { dict: ProgrammesDict }) {
   return (
     <>
       <Reveal className="mt-12 sm:mt-14">
-        {/* Full-bleed on phones: the table scrolls rather than squashes. */}
-        <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+        {/*
+          Full-bleed on phones: the table scrolls rather than squashes. Nothing
+          inside it can take focus, and Firefox and Safari do not make a childless
+          scroller keyboard-reachable, so the container takes focus itself —
+          otherwise the right-hand columns cannot be read without a pointer.
+        */}
+        <div
+          tabIndex={0}
+          role="group"
+          aria-label={dict.ladder.header.title}
+          className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0"
+        >
           <table className="w-full min-w-[46rem] border-collapse text-left">
             <caption className="sr-only">{dict.ladder.header.title}</caption>
             <thead>
@@ -68,7 +78,7 @@ export function ExamLadder({ dict }: { dict: ProgrammesDict }) {
                       {exam.cefr}
                     </td>
                     <td className="py-4 pr-6 text-sm text-navy-100 tabular-nums">
-                      {durationLabel(exam.minutes, dict.facts.minutes)}
+                      {durationLabel(exam.minutes, dict)}
                     </td>
                     <td className="py-4 text-sm text-navy-100 tabular-nums">
                       {exam.scale}
@@ -113,12 +123,20 @@ export function ExamLadder({ dict }: { dict: ProgrammesDict }) {
   );
 }
 
-/** 45 → "45 min", 210 → "3h 30", 240 → "4h". */
-function durationLabel(minutes: number, minutesTemplate: string): string {
-  if (minutes < 60) return format(minutesTemplate, { n: minutes });
+/**
+ * 45 → "45 min", 210 → "3h 30", 240 → "4h" — and the Russian column reads
+ * "3 ч 30", because the hour abbreviation is a translated string like every
+ * other word on the page. Seven of the eight exams run an hour or longer, so a
+ * hard-coded "h" was the unit almost the whole table carried.
+ */
+function durationLabel(minutes: number, dict: ProgrammesDict): string {
+  if (minutes < 60) return format(dict.facts.minutes, { n: minutes });
   const hours = Math.floor(minutes / 60);
   const rest = minutes % 60;
   return rest === 0
-    ? `${hours}h`
-    : `${hours}h ${String(rest).padStart(2, "0")}`;
+    ? format(dict.ladder.durationH, { h: hours })
+    : format(dict.ladder.durationHm, {
+        h: hours,
+        m: String(rest).padStart(2, "0"),
+      });
 }

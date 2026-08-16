@@ -83,7 +83,7 @@ export const schedule: ScheduleDict = {
       },
       {
         title: "Eticheta de nivel",
-        body: "Fiecare grupă lucrează la un singur nivel CEFR, de la Pre A1 la C2. Dacă nu știți sigur la ce nivel să vă înscrieți, cereți-ne un test de nivel.",
+        body: "Fiecare grupă lucrează la un singur nivel CECRL, de la Pre A1 la C2. Dacă nu știți sigur la ce nivel să vă înscrieți, cereți-ne un test de nivel.",
       },
       {
         title: "Sala",

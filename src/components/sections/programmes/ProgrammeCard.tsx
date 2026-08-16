@@ -71,7 +71,9 @@ export function ProgrammeCard({
           {item.name}
         </h3>
 
-        <p className="font-display mt-2 text-[0.9375rem] leading-snug text-slate-500 italic">
+        {/* Serif and a step down in colour, not italic: the italic face is no
+            longer loaded, and a synthesised oblique serif reads as a mistake. */}
+        <p className="font-display mt-2 text-[0.9375rem] leading-snug text-slate-500">
           {item.tagline}
         </p>
 

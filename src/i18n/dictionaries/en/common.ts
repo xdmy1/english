@@ -24,17 +24,16 @@ export const common: CommonDict = {
   },
   actions: {
     apply: "Request a place",
-    applyShort: "Apply",
     contact: "Contact us",
     learnMore: "Read more",
-    viewAll: "View all",
-    back: "Back",
     close: "Close",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     next: "Next",
     previous: "Previous",
     goToSlide: "Go to slide {n}",
+    gallery: "Photo gallery",
+    slide: "Photo",
     skipToContent: "Skip to main content",
     call: "Call us",
     email: "Email us",
@@ -63,7 +62,6 @@ export const common: CommonDict = {
     addressLabel: "Address",
     hoursLabel: "Opening hours",
     rights: "© {year} {name}. All rights reserved.",
-    credit: "Designed and built in Chișinău.",
   },
   ctaBand: {
     eyebrow: "Admissions",
@@ -75,7 +73,7 @@ export const common: CommonDict = {
   },
   cookieBanner: {
     title: "Cookies on this site",
-    body: "Two cookies are needed to run this site. Analytics and the embedded map stay switched off until you allow them, and refusing costs you nothing.",
+    body: "Two cookies are needed to run this site. The map embedded on the contact page stays switched off until you allow it, and refusing costs you nothing.",
     acceptAll: "Accept all",
     rejectAll: "Reject all",
     customise: "Customise",
@@ -87,10 +85,6 @@ export const common: CommonDict = {
       necessary: {
         title: "Necessary",
         body: "Remember the language you chose and the answer you gave to this banner. The site cannot run without them, so they cannot be switched off.",
-      },
-      analytics: {
-        title: "Analytics",
-        body: "Aggregated counts of page visits that show us which pages are read. Refuse them and every page works exactly as it does now.",
       },
       maps: {
         title: "Map",

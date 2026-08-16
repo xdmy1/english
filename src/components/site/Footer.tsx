@@ -151,11 +151,18 @@ export function Footer({
           <p>{format(dict.footer.rights, { year, name: dict.brand.name })}</p>
 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {legalNav.map((key) => (
-              <Link key={key} href={href(locale, key)} className="link-underline">
-                {dict.nav[key]}
-              </Link>
-            ))}
+            {/* The notices a visitor comes to the footer for; a landmark of
+                their own, like Explore and Programmes above. */}
+            <nav
+              aria-label={dict.navLabel.legal}
+              className="flex flex-wrap items-center gap-x-5 gap-y-2"
+            >
+              {legalNav.map((key) => (
+                <Link key={key} href={href(locale, key)} className="link-underline">
+                  {dict.nav[key]}
+                </Link>
+              ))}
+            </nav>
             <CookieSettingsButton label={dict.cookieBanner.settingsLabel} />
             {/* Opens upward: the footer clips its overflow. */}
             <LanguageSwitcher

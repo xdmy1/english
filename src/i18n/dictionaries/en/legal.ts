@@ -21,7 +21,7 @@ export const legal: LegalDict = {
           "The short version. Every line of it is repeated below, with the detail the law requires.",
         ],
         bullets: [
-          "We ask for a name, a telephone number, an email address, the learner's age and whatever you choose to write in the message box. Nothing else.",
+          "We ask for a name, a telephone number, an email address, the learner's age, the name of the parent where the learner is a child, the programme and the times you prefer, and whatever you choose to write in the message box. Your IP address and browser details travel with the request, as they do with any form on the internet.",
           "We use a request to answer you and to arrange a placement test. That is a step taken before a contract, not consent, so there is no consent to withdraw.",
           "We never sell personal data, and we send news about courses only to people who ticked the separate box for it.",
           "Nothing non-essential runs on this site unless you say so, and every page works the same whether you allow it or not.",
@@ -31,7 +31,7 @@ export const legal: LegalDict = {
       {
         heading: "Who we are, and the law that applies",
         paragraphs: [
-          "The centre is the operator — the controller — of the personal data described here. Our legal name, registered address, telephone number and email address are in the contact details at the foot of every page. Requests about this notice should go to the data-protection address published there.",
+          "The centre is the operator — the controller — of the personal data described here. Our legal name, registered address, telephone number and email address are in the contact details at the foot of every page. Requests about this notice should go to the email address published there.",
           "From 23 August 2026 this processing is governed by Legea nr. 195/2024 privind protecția datelor cu caracter personal, published in Monitorul Oficial nr. 367-369 of 23 August 2024. The law transposes Regulation (EU) 2016/679 (GDPR) and repeals Legea nr. 133/2011 on the same date. Article numbers in this notice are articles of Law 195/2024.",
           "We have not appointed a data protection officer. The law requires one only of public authorities and of organisations whose core activity is large-scale monitoring or large-scale processing of special categories of data, and a teaching centre of our size is none of those. A named member of staff handles data-protection requests instead, and the address above reaches them.",
           "There is no register of controllers in the Republic of Moldova and no duty to notify the authority before processing begins. That duty was abolished in 2022 and Law 195/2024 does not reintroduce it. We keep our own record of processing activities, as art. 30 requires.",
@@ -91,8 +91,8 @@ export const legal: LegalDict = {
               "Until you withdraw it",
             ],
             [
-              "Analytics and the map embedded on the contact page",
-              "IP address, browser and device data, cookie identifiers",
+              "Loading the map embedded on the contact page",
+              "IP address, browser and device data",
               "Art. 6(1)(a) — your consent, given in the cookie banner",
               "12 months for the record of your choice",
             ],
@@ -110,7 +110,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "Most of our students are children, so this section matters more than most.",
           "Art. 8 sets Moldova's threshold at 14. Where processing rests on consent and the service is offered directly to a child, the child must be at least 14; below that age the processing is lawful only if the consent is given or authorised by the child's legal representative — reprezentantul legal al copilului. The threshold in the European Union is set by each member state between 13 and 16, and Moldova's 14 does not travel abroad.",
-          "The enrolment form does not run on consent. It runs on art. 6(1)(b), the steps we take at your request before a contract, so the age-14 rule does not apply to it. Instead we ask that a parent or legal representative completes the form for any learner under 18, and the form says so above the first field.",
+          "The enrolment form does not run on consent. It runs on art. 6(1)(b), the steps we take at your request before a contract, so the age-14 rule does not apply to it. Instead we ask that a parent or legal representative completes the form for any learner under 18, and the form says so where you confirm you have read this notice.",
           "Consent is the basis in one place only: the separate tick that asks for news about courses. There we make reasonable efforts, with the means available to us, to establish that a legal representative gave or authorised it. A child under 14 may not subscribe alone.",
           "We ask for age, not a full date of birth, because age is all a placement decision needs. Please do not write health information, allergies or details of a learning-support need into the message box: that is special-category data under art. 9 and the form is not built to hold it. Tell us by telephone or in person before the course begins and we will record it properly, with your explicit consent and a retention limit.",
         ],
@@ -149,7 +149,7 @@ export const legal: LegalDict = {
           "Transfers to states of the European Economic Area need no special authorisation: art. 44(2) takes them outside the transfer rules altogether. Transfers anywhere else need a safeguard, and this is where ours stand.",
           "The enrolment form is at present delivered through Web3Forms, a service operated from India by Web3Creative. Submissions are processed on Amazon Web Services in the United States, US-East region. Its sub-processors include Cloudflare for edge protection and, for spam filtering, CleanTalk and Akismet, which both receive the sender's IP address and email address. Web3Forms states that submission data has a lifetime of up to 3 years on its systems.",
           "Our hosting provider may also store or serve the site from outside Moldova.",
-          "Neither India nor the United States holds an adequacy decision from the Centre. Those transfers therefore rest on standard contractual clauses — clauze standard de protecție a datelor — adopted by the European Commission, which art. 46(2)(c) recognises directly and without further authorisation. Write to the data-protection address and we will tell you which safeguards cover which provider and how to obtain a copy.",
+          "Neither India nor the United States holds an adequacy decision from the Centre. Those transfers therefore rest on standard contractual clauses — clauze standard de protecție a datelor — adopted by the European Commission, which art. 46(2)(c) recognises directly and without further authorisation. Write to the email address in the contact details and we will tell you which safeguards cover which provider and how to obtain a copy.",
           "If we change the service that carries the form, this section is rewritten before the change takes effect and the date at the top of the page moves with it.",
         ],
       },
@@ -187,7 +187,7 @@ export const legal: LegalDict = {
       {
         heading: "Making a request, and complaining to the Centre",
         paragraphs: [
-          "Write to the data-protection address in the contact details at the foot of this page. Say what you want and, if you know it, which right you are using. No particular form of words is needed.",
+          "Write to the email address in the contact details at the foot of this page. Say what you want and, if you know it, which right you are using. No particular form of words is needed.",
           "We may ask you to confirm your identity before we disclose anything, so that your data does not reach someone else. A request about a child should come from the parent or legal representative.",
           "We answer within one month. Where a request is complex, or where several arrive together, we may extend that by a further 2 months and will tell you within the first month that we have done so, and why. Every request and every answer is logged, and exercising a right costs you nothing.",
           "If you think we have handled your data badly, tell us first: most things are quicker to put right directly. You are not obliged to, and you may go to the supervisory authority at any point. That authority is the National Centre for Personal Data Protection of the Republic of Moldova — Centrul Național pentru Protecția Datelor cu Caracter Personal. After first mention the law calls it simply the Centre, and so do we.",
@@ -220,7 +220,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "We update this notice when our processing changes and when the law changes. The date at the top of the page is the date of the current version, and a substantial change is announced on the site before it takes effect.",
           "The notice is published in English, Romanian and Russian. Romanian is the state language of the Republic of Moldova, and if the versions differ the Romanian text prevails.",
-          "For anything written here, use the data-protection address in the contact details at the foot of this page, or telephone the centre during opening hours.",
+          "For anything written here, use the email address in the contact details at the foot of this page, or telephone the centre during opening hours.",
         ],
       },
     ],
@@ -288,7 +288,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "Use the cookie settings link in the footer. It reopens the banner with your current choices shown, and you can change any of them there. Withdrawing consent is as easy as giving it, which is what art. 7(3) of Legea nr. 195/2024 requires.",
           "You can also delete or block cookies in your browser settings. Block these two and the site will not remember your language and will ask about cookies on every visit; nothing else changes.",
-          "We keep the date of your choice and the version of the banner shown to you, so that we can demonstrate what you were asked and what you answered.",
+          "The date of your choice and the version of the banner shown to you are stored inside the tbi_consent cookie itself, on your own device. We keep no copy on our own systems, so clearing that cookie erases the record and the banner asks you again.",
         ],
       },
       {

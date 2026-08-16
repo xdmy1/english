@@ -30,14 +30,26 @@ export function Accordion({
   const [open, setOpen] = useState<number>(defaultOpen ?? 0);
 
   return (
-    <div className={cn("divide-y", tone === "dark" ? "divide-line" : "divide-white/12", className)}>
+    /*
+      Each item draws its own top rule. The wrapper used to add `divide-y` on
+      top of that, which put two hairlines between every pair — 2px where the
+      rest of the site rules at 1px.
+    */
+    <div className={className}>
       {items.map((item, index) => {
         const expanded = open === index;
         const panelId = `${baseId}-panel-${index}`;
         const buttonId = `${baseId}-button-${index}`;
 
         return (
-          <div key={item.q} className="border-t first:border-t-0" data-open={expanded || undefined}>
+          <div
+            key={item.q}
+            className={cn(
+              "border-t first:border-t-0",
+              tone === "dark" ? "border-line" : "border-white/12",
+            )}
+            data-open={expanded || undefined}
+          >
             <h3>
               <button
                 id={buttonId}
@@ -46,7 +58,10 @@ export function Accordion({
                 aria-controls={panelId}
                 onClick={() => setOpen(expanded ? -1 : index)}
                 className={cn(
-                  "group flex w-full items-start gap-5 py-5 text-left transition-colors duration-200 ease-out-quint sm:py-6",
+                  // A full-width row cannot take the 3% of `press` without
+                  // looking rubbery, so it gets a 1% version of the same idea.
+                  "group flex w-full items-start gap-5 py-5 text-left active:scale-[0.99] sm:py-6",
+                  "transition-[color,transform] duration-200 ease-out-quint",
                   tone === "dark"
                     ? "can-hover:hover:text-navy-600"
                     : "can-hover:hover:text-white",
@@ -63,7 +78,8 @@ export function Accordion({
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border transition-[transform,background-color,border-color] duration-200 ease-out-quint",
+                    // Turning on the spot, in both directions: the in-out curve.
+                    "mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border transition-[transform,background-color,border-color] duration-200 ease-in-out-quint",
                     tone === "dark"
                       ? "border-navy-200 text-navy-700 group-data-[open]:border-navy-800 group-data-[open]:bg-navy-800 group-data-[open]:text-white"
                       : "border-white/25 text-white group-data-[open]:border-white group-data-[open]:bg-white group-data-[open]:text-navy-900",
@@ -87,10 +103,19 @@ export function Accordion({
               </button>
             </h3>
 
+            {/*
+              Collapsing with grid-rows and opacity leaves the answer in the
+              accessibility tree, so every answer was read out however firmly
+              the button said it was collapsed — and every panel stayed a
+              landmark. aria-hidden makes the closed state real. The text is
+              still in the DOM, and there is nothing focusable inside it, so
+              Ctrl+F and crawlers are unaffected.
+            */}
             <div
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
+              aria-hidden={!expanded}
               className={cn(
                 "grid transition-[grid-template-rows,opacity] duration-300 ease-out-quint",
                 expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",

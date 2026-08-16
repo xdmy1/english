@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { LOCALE_COOKIE, locales, localeMeta, type Locale } from "@/i18n/config";
 import { href, routeKeyFromPathname } from "@/i18n/routes";
@@ -10,7 +10,11 @@ import { format } from "@/i18n/format";
 import { cn } from "@/lib/cn";
 
 function remember(locale: Locale) {
-  document.cookie = `${LOCALE_COOKIE}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+  // Secure to match the consent cookie: this one decides where src/proxy.ts
+  // sends the visitor, so it must not be settable over plain HTTP.
+  document.cookie =
+    `${LOCALE_COOKIE}=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax` +
+    (location.protocol === "https:" ? "; secure" : "");
 }
 
 export function LanguageSwitcher({
@@ -19,6 +23,7 @@ export function LanguageSwitcher({
   tone = "dark",
   className,
   placement = "bottom",
+  forceClosed = false,
 }: {
   locale: Locale;
   labels: { label: string; switchTo: string };
@@ -30,11 +35,23 @@ export function LanguageSwitcher({
    * their overflow, and a downward menu would be cut off.
    */
   placement?: "bottom" | "top";
+  /** Set while the switcher's container is being hidden, so the menu goes with it. */
+  forceClosed?: boolean;
 }) {
   const pathname = usePathname();
   const routeKey = routeKeyFromPathname(pathname);
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const listId = useId();
+
+  // Derived during render rather than in an effect, so the menu is never
+  // painted open for a frame inside a container that has just been hidden.
+  const [wasForceClosed, setWasForceClosed] = useState(forceClosed);
+  if (wasForceClosed !== forceClosed) {
+    setWasForceClosed(forceClosed);
+    if (forceClosed && open) setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -43,7 +60,14 @@ export function LanguageSwitcher({
       if (!wrapRef.current?.contains(event.target as Node)) setOpen(false);
     };
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key !== "Escape") return;
+      // Take focus back before closing: the list is inerted on close, and an
+      // inert ancestor blurs whatever is inside it. Only when focus is in here
+      // — Escape pressed elsewhere on the page should not summon it.
+      if (wrapRef.current?.contains(document.activeElement)) {
+        buttonRef.current?.focus();
+      }
+      setOpen(false);
     };
 
     document.addEventListener("pointerdown", onPointerDown);
@@ -56,10 +80,16 @@ export function LanguageSwitcher({
 
   return (
     <div ref={wrapRef} className={cn("relative", className)}>
+      {/*
+        No aria-haspopup: that announces a menu widget, and what opens is a
+        plain list of links with no arrow-key model behind it. An expanded
+        disclosure needs only aria-expanded and aria-controls.
+      */}
       <button
+        ref={buttonRef}
         type="button"
-        aria-haspopup="true"
         aria-expanded={open}
+        aria-controls={listId}
         aria-label={labels.label}
         onClick={() => setOpen((value) => !value)}
         className={cn(
@@ -85,6 +115,7 @@ export function LanguageSwitcher({
       </button>
 
       <ul
+        id={listId}
         aria-label={labels.label}
         inert={!open}
         className={cn(

@@ -5,8 +5,8 @@ import { cn } from "@/lib/cn";
 
 /**
  * The one card surface used across the site. Hover lift is deliberately small
- * (1px and a border change, not a shadow bloom) — this is a school, not a
- * dashboard.
+ * — 1px and a border change, and no shadow: depth on this site comes from
+ * hairlines and ground changes. This is a school, not a dashboard.
  */
 export function Card({
   children,
@@ -32,7 +32,7 @@ export function Card({
     "relative flex flex-col rounded-2xl border p-6 sm:p-7",
     tones[tone],
     (href || interactive) &&
-      "transition-[transform,border-color,box-shadow] duration-250 ease-out-quint can-hover:hover:-translate-y-px can-hover:hover:shadow-card " +
+      "transition-[transform,border-color] duration-250 ease-out-quint can-hover:hover:-translate-y-px " +
         (tone === "navy"
           ? "can-hover:hover:border-white/25"
           : "can-hover:hover:border-navy-300"),

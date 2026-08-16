@@ -182,7 +182,9 @@ export const programmes: ProgrammesDict = {
       duration: "Approximate length",
       scale: "Cambridge English Scale",
     },
-    note: "Cambridge publishes guided learning hours as a guideline only, counted cumulatively from a standing start; a learner may need more time, or less. Cambridge English certificates do not expire, although universities and employers commonly ask for a result from the last 2 years. Pre A1 Starters, A1 Movers and A2 Flyers are not passed or failed: every child receives a certificate showing the shields awarded.",
+    durationHm: "{h}h {m}",
+    durationH: "{h}h",
+    note: "Where a row gives two names, they are two versions of one qualification: the for Schools paper sits at the same level and follows the same format, with topics chosen for teenagers, and the certificate carries the same weight. Cambridge publishes guided learning hours as a guideline only, counted cumulatively from a standing start; a learner may need more time, or less. Cambridge English certificates do not expire, although universities and employers commonly ask for a result from the last 2 years. Pre A1 Starters, A1 Movers and A2 Flyers are not passed or failed: every child receives a certificate showing the shields awarded.",
   },
 
   placement: {
@@ -219,7 +221,7 @@ export const programmes: ProgrammesDict = {
     items: [
       {
         q: "Does a Cambridge certificate help with the baccalaureate?",
-        a: "Yes, and the mechanism is exact. A qualifying international certificate at B2 or above exempts the candidate from the Limba străină I paper, which is then awarded the mark of 10 without being sat — in Moldovan practice, 10 din oficiu — and that 10 enters the average of the baccalaureate examinations. The recognised list covers B2 First and B2 First for Schools, C1 Advanced, C2 Proficiency, IELTS, TOEFL iBT and the Oxford Test of English, each with its own minimum overall, reading and writing scores, and the dossier is filed at the school secretariat by 10 April. The list and the thresholds are set by ministerial order and are amended from time to time, so we check the current annex with each family rather than quoting last year's.",
+        a: "Yes, and the mechanism is exact. A qualifying international certificate at B2 or above exempts the candidate from the Limba străină I paper, which is then awarded the mark of 10 without being sat — in Moldovan practice, 10 din oficiu — and that 10 enters the average of the baccalaureate examinations. The recognised list covers B2 First and B2 First for Schools, C1 Advanced, C2 Proficiency, IELTS, TOEFL iBT, the Oxford Test of English and Oxford Test of English Advanced, each with its own minimum overall, reading and writing scores, and the dossier is filed at the school secretariat by 10 April. The list and the thresholds are set by ministerial order and are amended from time to time, so we check the current annex with each family rather than quoting last year's.",
       },
       {
         q: "Do you run the Cambridge examinations yourselves?",

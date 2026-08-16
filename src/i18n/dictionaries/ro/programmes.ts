@@ -50,7 +50,7 @@ export const programmes: ProgrammesDict = {
       body: "Limba străină I este disciplină obligatorie la bacalaureat la toate profilurile, iar programa națională situează proba la nivelul B1. Predăm după acea programă: un text la prima vedere, un eseu structurat și un subiect de cultură, fiecare evaluat conform baremului național de corectare. Nu există o secțiune separată de gramatică, prin urmare gramatica și ortografia se punctează în interiorul părții scrise.",
       highlights: [
         "Predare după programa națională, item cu item",
-        "Teste oficiale de antrenament și subiecte din sesiunile anterioare",
+        "Teste oficiale pentru exersare și subiecte din sesiunile anterioare",
         "Procedura de scutire, explicată fiecărei familii",
       ],
       outcome:
@@ -178,11 +178,13 @@ export const programmes: ProgrammesDict = {
     columns: {
       exam: "Examen",
       legacy: "Abreviere veche",
-      cefr: "CEFR",
+      cefr: "CECRL",
       duration: "Durată aproximativă",
       scale: "Scala Cambridge English",
     },
-    note: "Cambridge publică orele de studiu ghidat doar cu titlu orientativ, numărate cumulativ de la nivel zero; un cursant poate avea nevoie de mai mult timp sau de mai puțin. Certificatele Cambridge English nu expiră, deși universitățile și angajatorii cer în mod obișnuit un rezultat din ultimii 2 ani. La Pre A1 Starters, A1 Movers și A2 Flyers nu există promovare sau nepromovare: fiecare copil primește un certificat pe care sunt indicate scuturile obținute.",
+    durationHm: "{h}h {m}",
+    durationH: "{h}h",
+    note: "Acolo unde un rând indică două denumiri, este vorba de două variante ale aceleiași calificări: proba for Schools este la același nivel și are același format, cu subiecte alese pentru adolescenți, iar certificatul are aceeași valoare. Cambridge publică orele de studiu ghidat doar cu titlu orientativ, numărate cumulativ de la nivel zero; un cursant poate avea nevoie de mai mult timp sau de mai puțin. Certificatele Cambridge English nu expiră, deși universitățile și angajatorii cer în mod obișnuit un rezultat din ultimii 2 ani. La Pre A1 Starters, A1 Movers și A2 Flyers nu există promovare sau nepromovare: fiecare copil primește un certificat pe care sunt indicate scuturile obținute.",
   },
 
   placement: {
@@ -219,7 +221,7 @@ export const programmes: ProgrammesDict = {
     items: [
       {
         q: "Un certificat Cambridge ajută la bacalaureat?",
-        a: "Da, iar mecanismul este precis. Un certificat internațional recunoscut, la nivelul B2 sau superior, scutește candidatul de proba la Limba străină I, care primește atunci nota 10 fără a fi susținută — în practica din Moldova, „nota 10 din oficiu” — iar acest 10 intră în media examenelor de bacalaureat. Lista recunoscută cuprinde B2 First și B2 First for Schools, C1 Advanced, C2 Proficiency, IELTS, TOEFL iBT și Oxford Test of English, fiecare cu propriile scoruri minime la general, la citire și la scriere, iar dosarul se depune la secretariatul instituției până la 10 aprilie. Lista și pragurile se stabilesc prin ordin al ministrului și se modifică din când în când, așa că verificăm anexa în vigoare împreună cu fiecare familie, în loc să cităm varianta de anul trecut.",
+        a: "Da, iar mecanismul este precis. Un certificat internațional recunoscut, la nivelul B2 sau superior, scutește candidatul de proba la Limba străină I, care primește atunci nota 10 fără a fi susținută — în practica din Moldova, „nota 10 din oficiu” — iar acest 10 intră în media examenelor de bacalaureat. Lista recunoscută cuprinde B2 First și B2 First for Schools, C1 Advanced, C2 Proficiency, IELTS, TOEFL iBT, Oxford Test of English și Oxford Test of English Advanced, fiecare cu propriile scoruri minime la general, la citire și la scriere, iar dosarul se depune la secretariatul instituției până la 10 aprilie. Lista și pragurile se stabilesc prin ordin al ministrului și se modifică din când în când, așa că verificăm anexa în vigoare împreună cu fiecare familie, în loc să cităm varianta de anul trecut.",
       },
       {
         q: "Organizați dumneavoastră examenele Cambridge?",

@@ -100,6 +100,8 @@ export function Facilities({
                 next: actions.next,
                 goToSlide: actions.goToSlide,
                 region: t.header.title,
+                gallery: actions.gallery,
+                slide: actions.slide,
               }}
             />
           </Reveal>

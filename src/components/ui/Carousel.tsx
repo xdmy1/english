@@ -24,7 +24,18 @@ export function Carousel({
   className,
 }: {
   slides: CarouselSlide[];
-  labels: { previous: string; next: string; goToSlide: string; region: string };
+  /**
+   * `gallery` and `slide` are aria-roledescriptions, which a screen reader
+   * speaks verbatim — so unlike a role name they have to arrive translated.
+   */
+  labels: {
+    previous: string;
+    next: string;
+    goToSlide: string;
+    region: string;
+    gallery: string;
+    slide: string;
+  };
   className?: string;
 }) {
   // Held in state, not a ref: the plugin instance must be created once, and a
@@ -40,8 +51,9 @@ export function Carousel({
   );
 
   const [selected, setSelected] = useState(0);
-  const [progress, setProgress] = useState(0);
   const parallaxRef = useRef<Array<HTMLDivElement | null>>([]);
+  const scrubRef = useRef<HTMLSpanElement>(null);
+  const lastProgress = useRef(0);
 
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -73,11 +85,25 @@ export function Carousel({
     });
   }, [embla]);
 
+  // Also DOM writes only. The scrub bar moves every frame of every drag, and
+  // routing that through state re-rendered the whole carousel each time.
   const onScroll = useCallback(() => {
     if (!embla) return;
-    setProgress(Math.max(0, Math.min(1, embla.scrollProgress())));
+    const next = Math.max(0, Math.min(1, embla.scrollProgress()));
+    const bar = scrubRef.current;
+
+    if (bar) {
+      // Looping carries scrollProgress from ~1 back to ~0 in a single frame.
+      // Easing that sends the bar the full width of the track backwards while
+      // the slides travel forwards, so the wrap is made instantly instead.
+      bar.style.transitionProperty =
+        Math.abs(next - lastProgress.current) > 0.5 ? "none" : "";
+      bar.style.transform = `translateX(${next * (slides.length - 1) * 100}%)`;
+    }
+
+    lastProgress.current = next;
     applyParallax();
-  }, [embla, applyParallax]);
+  }, [embla, applyParallax, slides.length]);
 
   useEffect(() => {
     if (!embla) return;
@@ -86,8 +112,8 @@ export function Carousel({
       autoplay.stop();
     }
 
-    // Position the plates for first paint; `selected` and `progress` already
-    // hold the values embla reports at index 0, so no state has to be synced.
+    // Position the plates for first paint. The scrub bar and `selected` are
+    // already rendered at the values embla reports for index 0.
     applyParallax();
 
     embla.on("select", onSelect);
@@ -109,7 +135,7 @@ export function Carousel({
     <div
       className={cn("group/carousel relative", className)}
       role="region"
-      aria-roledescription="carousel"
+      aria-roledescription={labels.gallery}
       aria-label={labels.region}
     >
       <div className="overflow-hidden rounded-2xl" ref={emblaRef}>
@@ -119,7 +145,7 @@ export function Carousel({
               key={slide.src}
               className="relative min-w-0 flex-[0_0_100%] pl-0 sm:flex-[0_0_78%] sm:pr-4 lg:flex-[0_0_62%]"
               role="group"
-              aria-roledescription="slide"
+              aria-roledescription={labels.slide}
               aria-label={`${index + 1} / ${slides.length}`}
             >
               <figure className="relative overflow-hidden rounded-2xl bg-navy-900">
@@ -136,7 +162,6 @@ export function Carousel({
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 78vw, 62vw"
                       className="object-cover"
-                      priority={index === 0}
                     />
                   </div>
                   <div
@@ -174,15 +199,14 @@ export function Carousel({
         </div>
 
         {/* Scrub bar doubles as the progress indicator. The travelling bar is
-            a fixed width and only its transform changes. */}
+            a fixed width and only its transform changes. It is already on
+            screen and moves both ways, so it eases in and out. */}
         <div className="relative h-px flex-1 bg-line">
           <span
+            ref={scrubRef}
             aria-hidden="true"
-            className="absolute top-[-1px] left-0 h-[3px] bg-navy-800 transition-transform duration-300 ease-out-quint"
-            style={{
-              width: `${100 / slides.length}%`,
-              transform: `translateX(${progress * (slides.length - 1) * 100}%)`,
-            }}
+            className="absolute top-[-1px] left-0 h-[3px] bg-navy-800 transition-transform duration-250 ease-in-out-quint"
+            style={{ width: `${100 / slides.length}%` }}
           />
         </div>
 
@@ -205,7 +229,9 @@ export function Carousel({
                   "transition-[transform,background-color] duration-200 ease-out-quint",
                   selected === index
                     ? "scale-x-100 bg-navy-800"
-                    : "scale-x-[0.375] bg-navy-200 can-hover:group-hover/dot:bg-navy-300",
+                    : // navy-200 was 1.5:1 on white — the unselected dots read
+                      // as nothing at all, so the row looked like one control.
+                      "scale-x-[0.375] bg-navy-400 can-hover:group-hover/dot:bg-navy-500",
                 )}
               />
             </button>

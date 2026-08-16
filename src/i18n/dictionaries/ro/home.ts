@@ -204,7 +204,7 @@ export const home: HomeDict = {
       {
         q: "Poate un certificat Cambridge să înlocuiască proba de engleză de la BAC?",
         // The official term for the awarded mark is „nota 10 din oficiu” — kept verbatim.
-        a: "Poate înlocui examenul cu totul. Un certificat aflat pe lista recunoscută, la nivelul B2 sau mai sus în ansamblu și la citire și scriere, scutește candidatul de proba de limbă străină, iar în locul ei se înregistrează „nota 10 din oficiu”. Pagina de programe prezintă lista, scorurile minime și termenul din aprilie, toate fixate prin ordin al ministrului și revizuite de la an la an.",
+        a: "Poate înlocui examenul cu totul. Un certificat aflat pe lista recunoscută, la nivelul B2 sau mai sus în ansamblu și la citire și scriere, scutește candidatul de proba de limbă străină, iar în locul ei se înregistrează „nota 10 din oficiu”. Pagina de programe arată ce certificate sunt pe listă și termenul din aprilie pentru depunerea dosarului. Lista și scorul pe care trebuie să îl atingă fiecare certificat se fixează prin ordin al ministrului și se revizuiesc de la an la an, așa că verificăm împreună cu dumneavoastră anexa în vigoare, în loc să cităm o cifră care s-ar putea să se fi schimbat.",
       },
       {
         // Translator note: "Limba străină I" is the official Moldovan name of the paper. Keep the Romanian form in every language.

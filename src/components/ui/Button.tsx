@@ -19,7 +19,9 @@ export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
   "group/btn relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold " +
-  "transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out-quint " +
+  // box-shadow is left out on purpose: no variant changes it on hover, and
+  // the focus ring is a box-shadow — listing it would fade the ring in.
+  "transition-[transform,background-color,border-color,color] duration-200 ease-out-quint " +
   "active:scale-[0.975] disabled:pointer-events-none disabled:opacity-55";
 
 const variants: Record<ButtonVariant, string> = {

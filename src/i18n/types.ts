@@ -71,11 +71,8 @@ export interface CommonDict {
   };
   actions: {
     apply: string;
-    applyShort: string;
     contact: string;
     learnMore: string;
-    viewAll: string;
-    back: string;
     close: string;
     openMenu: string;
     closeMenu: string;
@@ -83,6 +80,10 @@ export interface CommonDict {
     previous: string;
     /** "Go to slide {n}" */
     goToSlide: string;
+    /** aria-roledescription for a photo carousel. Never rendered visually. */
+    gallery: string;
+    /** aria-roledescription for one slide inside it. */
+    slide: string;
     skipToContent: string;
     call: string;
     email: string;
@@ -105,7 +106,6 @@ export interface CommonDict {
     hoursLabel: string;
     /** "© {year} {name}. All rights reserved." */
     rights: string;
-    credit: string;
   };
   ctaBand: {
     eyebrow: string;
@@ -125,9 +125,13 @@ export interface CommonDict {
     readMore: string;
     settingsLabel: string;
     alwaysOn: string;
+    /**
+     * No analytics category: the site runs none, and the cookie policy says a
+     * category will be added here if that ever changes. Add it back alongside
+     * the tool, not before it.
+     */
     categories: {
       necessary: Item;
-      analytics: Item;
       maps: Item;
     };
   };
@@ -316,6 +320,10 @@ export interface ProgrammesDict {
       duration: string;
       scale: string;
     };
+    /** "{h}h {m}" — an exam length that does not fall on the hour. */
+    durationHm: string;
+    /** "{h}h" — a whole number of hours. */
+    durationH: string;
     note: string;
   };
   placement: {
@@ -378,7 +386,7 @@ export interface ScheduleDict {
     body: string;
   };
   term: {
-    /** "Autumn term · {start} – {end}" */
+    /** "{start} – {end}" — the term name is rendered separately, from term.autumn/spring/summer. */
     label: string;
     autumn: string;
     spring: string;

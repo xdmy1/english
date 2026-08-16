@@ -15,13 +15,13 @@ export function HomeProgrammes({
   locale,
   dict,
   programmesDict,
-  viewAllLabel,
+  cardCta,
 }: {
   locale: Locale;
   dict: HomeDict["programmes"];
   programmesDict: ProgrammesDict;
   /** common.actions.learnMore — the read-on affordance on each card. */
-  viewAllLabel: string;
+  cardCta: string;
 }) {
   return (
     <Section id="programmes" tone="chalk">
@@ -93,7 +93,7 @@ export function HomeProgrammes({
                   </dl>
 
                   <span className="mt-6 inline-flex items-center gap-2 text-[0.8125rem] font-semibold text-navy-800">
-                    {viewAllLabel}
+                    {cardCta}
                     <ArrowRight className="can-hover:group-hover/card:translate-x-0.5" />
                   </span>
                 </Card>

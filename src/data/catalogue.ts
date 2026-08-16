@@ -162,7 +162,9 @@ export type CambridgeExamId = (typeof cambridgeExamIds)[number];
 export interface CambridgeExamFacts {
   /**
    * Current official name. Cambridge renamed the suite in 2018 — these are the
-   * only names that may be used as the primary label.
+   * only names that may be used as the primary label. Three levels exist as two
+   * qualifications of the same format: an adult is entered for "B2 First", a
+   * teenager for "B2 First for Schools", so the ladder has to name both.
    */
   name: string;
   /** Pre-2018 abbreviation. Secondary aid only, always in brackets. */
@@ -185,9 +187,9 @@ export const cambridgeExams: Record<CambridgeExamId, CambridgeExamFacts> = {
   starters: { name: "Pre A1 Starters", legacy: "YLE Starters", cefr: "Pre A1", minutes: 45, scale: "up to 15 shields", grades: "—" },
   movers: { name: "A1 Movers", legacy: "YLE Movers", cefr: "A1", minutes: 60, scale: "up to 15 shields", grades: "—" },
   flyers: { name: "A2 Flyers", legacy: "YLE Flyers", cefr: "A2", minutes: 75, scale: "up to 15 shields", grades: "—" },
-  key: { name: "A2 Key for Schools", legacy: "KET", cefr: "A2", minutes: 110, scale: "82–150", grades: "A / B / C" },
-  preliminary: { name: "B1 Preliminary for Schools", legacy: "PET", cefr: "B1", minutes: 140, scale: "102–170", grades: "A / B / C" },
-  first: { name: "B2 First for Schools", legacy: "FCE", cefr: "B2", minutes: 210, scale: "122–190", grades: "A / B / C" },
+  key: { name: "A2 Key / A2 Key for Schools", legacy: "KET", cefr: "A2", minutes: 110, scale: "82–150", grades: "A / B / C" },
+  preliminary: { name: "B1 Preliminary / B1 Preliminary for Schools", legacy: "PET", cefr: "B1", minutes: 140, scale: "102–170", grades: "A / B / C" },
+  first: { name: "B2 First / B2 First for Schools", legacy: "FCE", cefr: "B2", minutes: 210, scale: "122–190", grades: "A / B / C" },
   advanced: { name: "C1 Advanced", legacy: "CAE", cefr: "C1", minutes: 240, scale: "142–210", grades: "A / B / C" },
   proficiency: { name: "C2 Proficiency", legacy: "CPE", cefr: "C2", minutes: 240, scale: "162–230", grades: "A / B / C" },
 };
@@ -205,6 +207,7 @@ export const bacExemptions = [
   { exam: "IELTS", requirement: "Overall ≥ 6 · Reading ≥ 6 · Writing ≥ 6" },
   { exam: "TOEFL iBT", requirement: "Total ≥ 86 · Reading ≥ 20 · Writing ≥ 20" },
   { exam: "Oxford Test of English", requirement: "Overall B2 · Reading B2 · Writing B2" },
+  { exam: "Oxford Test of English Advanced", requirement: "Overall B2 · Reading B2 · Writing B2" },
 ] as const;
 
 /* ── Rooms (used by the timetable) ───────────────────────────────────────── */

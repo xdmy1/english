@@ -21,7 +21,7 @@ export const legal: LegalDict = {
           "Varianta scurtă. Fiecare rând de mai jos este reluat în text, cu detaliile pe care le cere legea.",
         ],
         bullets: [
-          "Vă cerem un nume, un număr de telefon, o adresă de e-mail, vârsta cursantului și ceea ce alegeți să scrieți în caseta de mesaj. Nimic altceva.",
+          "Vă cerem un nume, un număr de telefon, o adresă de e-mail, vârsta cursantului, numele părintelui atunci când cursantul este copil, programul și orele pe care le preferați, precum și ceea ce alegeți să scrieți în caseta de mesaj. Adresa dumneavoastră IP și datele despre browser călătoresc odată cu cererea, ca la orice formular de pe internet.",
           "Folosim cererea pentru a vă răspunde și pentru a stabili un test de nivel. Acestea sunt măsuri precontractuale, nu consimțământ, așa că nu există un consimțământ care să fie retras.",
           "Nu vindem niciodată date cu caracter personal, iar noutățile despre cursuri le trimitem doar persoanelor care au bifat caseta separată pentru ele.",
           "Pe acest site nu rulează nimic neesențial fără acordul dumneavoastră, iar fiecare pagină funcționează la fel, indiferent dacă îl acordați sau nu.",
@@ -31,7 +31,7 @@ export const legal: LegalDict = {
       {
         heading: "Cine suntem și legea aplicabilă",
         paragraphs: [
-          "Centrul este operatorul datelor cu caracter personal descrise aici, adică cel care stabilește scopurile și mijloacele prelucrării lor. Denumirea noastră juridică, sediul, numărul de telefon și adresa de e-mail se regăsesc în datele de contact din subsolul fiecărei pagini. Cererile privind această politică se transmit la adresa pentru protecția datelor publicată acolo.",
+          "Centrul este operatorul datelor cu caracter personal descrise aici, adică cel care stabilește scopurile și mijloacele prelucrării lor. Denumirea noastră juridică, sediul, numărul de telefon și adresa de e-mail se regăsesc în datele de contact din subsolul fiecărei pagini. Cererile privind această politică se transmit la adresa de e-mail publicată acolo.",
           "Din 23 august 2026, această prelucrare este guvernată de Legea nr. 195/2024 privind protecția datelor cu caracter personal, publicată în Monitorul Oficial nr. 367-369 din 23 august 2024. Legea transpune Regulamentul (UE) 2016/679 (GDPR) și abrogă, la aceeași dată, Legea nr. 133/2011. Numerele de articole din această politică sunt articole ale Legii nr. 195/2024.",
           "Nu am desemnat un responsabil cu protecția datelor. Legea impune acest lucru doar autorităților publice și organizațiilor a căror activitate principală constă în monitorizarea pe scară largă sau în prelucrarea pe scară largă a categoriilor speciale de date, iar un centru de instruire de mărimea noastră nu se încadrează în niciuna dintre aceste situații. Cererile privind protecția datelor sunt tratate de o persoană desemnată din echipă, care poate fi contactată la adresa de mai sus.",
           "În Republica Moldova nu există un registru al operatorilor și nici obligația de a notifica autoritatea înainte de începerea prelucrării. Această obligație a fost abrogată în 2022, iar Legea nr. 195/2024 nu o reintroduce. Ținem propria evidență a activităților de prelucrare, așa cum cere art. 30.",
@@ -91,8 +91,8 @@ export const legal: LegalDict = {
               "Până la retragerea consimțământului",
             ],
             [
-              "Analiza traficului și harta încorporată în pagina de contact",
-              "Adresa IP, date despre browser și dispozitiv, identificatori din cookie-uri",
+              "Încărcarea hărții încorporate în pagina de contact",
+              "Adresa IP, date despre browser și dispozitiv",
               "Art. 6 alin. (1) lit. a) — consimțământul dumneavoastră, exprimat în bannerul de cookie-uri",
               "12 luni pentru înregistrarea opțiunii dumneavoastră",
             ],
@@ -110,7 +110,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "Cei mai mulți dintre cursanții noștri sunt copii, așa că această secțiune contează mai mult decât celelalte.",
           "Art. 8 stabilește pragul din Republica Moldova la 14 ani. Atunci când prelucrarea se întemeiază pe consimțământ, iar serviciul este oferit direct unui copil, copilul trebuie să aibă cel puțin 14 ani; sub această vârstă, prelucrarea este legală numai dacă și în măsura în care consimțământul este acordat sau autorizat de reprezentantul legal al copilului. În Uniunea Europeană, pragul este stabilit de fiecare stat membru între 13 și 16 ani, iar cei 14 ani din Republica Moldova nu se aplică în afara țării.",
-          "Formularul de înscriere nu funcționează pe bază de consimțământ. El se întemeiază pe art. 6 alin. (1) lit. b), măsurile pe care le luăm la cererea dumneavoastră înainte de încheierea unui contract, astfel încât regula celor 14 ani nu i se aplică. În schimb, cerem ca formularul să fie completat de un părinte sau de reprezentantul legal pentru orice cursant sub 18 ani, iar formularul precizează acest lucru deasupra primului câmp.",
+          "Formularul de înscriere nu funcționează pe bază de consimțământ. El se întemeiază pe art. 6 alin. (1) lit. b), măsurile pe care le luăm la cererea dumneavoastră înainte de încheierea unui contract, astfel încât regula celor 14 ani nu i se aplică. În schimb, cerem ca formularul să fie completat de un părinte sau de reprezentantul legal pentru orice cursant sub 18 ani, iar formularul precizează acest lucru acolo unde confirmați că ați citit această politică.",
           "Consimțământul este temei într-un singur loc: bifa separată prin care se solicită noutăți despre cursuri. Acolo depunem eforturi rezonabile, cu mijloacele de care dispunem, pentru a stabili că acesta a fost acordat sau autorizat de un reprezentant legal. Un copil sub 14 ani nu se poate abona singur.",
           "Cerem vârsta, nu data completă a nașterii, pentru că vârsta este tot ce trebuie pentru o decizie de repartizare. Vă rugăm să nu scrieți în caseta de mesaj informații despre sănătate, alergii sau detalii privind o nevoie de sprijin în învățare: acestea sunt categorii speciale de date în sensul art. 9, iar formularul nu este conceput să le găzduiască. Spuneți-ne prin telefon sau personal, înainte de începerea cursului, și le vom consemna corespunzător, cu consimțământul dumneavoastră explicit și cu o limită de stocare.",
         ],
@@ -149,7 +149,7 @@ export const legal: LegalDict = {
           "Transferurile către statele Spațiului Economic European nu necesită autorizări speciale: art. 44 alin. (2) le scoate cu totul de sub regulile privind transferul. Transferurile către orice altă destinație au nevoie de o garanție, iar situația garanțiilor noastre este următoarea.",
           "În prezent, formularul de înscriere este livrat prin Web3Forms, un serviciu operat din India de Web3Creative. Trimiterile sunt prelucrate pe Amazon Web Services în Statele Unite, regiunea US-East. Printre subîmputerniciții săi se numără Cloudflare, pentru protecția la nivel de rețea, și, pentru filtrarea spamului, CleanTalk și Akismet, care primesc amândouă adresa IP și adresa de e-mail ale expeditorului. Web3Forms declară că datele trimise au o durată de viață de până la 3 ani în sistemele sale.",
           "De asemenea, furnizorul nostru de găzduire poate stoca sau livra site-ul din afara Republicii Moldova.",
-          "Nici India, nici Statele Unite nu beneficiază de o decizie a Centrului privind caracterul adecvat al nivelului de protecție. Prin urmare, aceste transferuri se întemeiază pe clauze standard de protecție a datelor adoptate de Comisia Europeană, pe care art. 46 alin. (2) lit. c) le recunoaște direct și fără o autorizare suplimentară. Scrieți-ne la adresa pentru protecția datelor și vă vom spune ce garanții acoperă fiecare furnizor și cum puteți obține o copie.",
+          "Nici India, nici Statele Unite nu beneficiază de o decizie a Centrului privind caracterul adecvat al nivelului de protecție. Prin urmare, aceste transferuri se întemeiază pe clauze standard de protecție a datelor adoptate de Comisia Europeană, pe care art. 46 alin. (2) lit. c) le recunoaște direct și fără o autorizare suplimentară. Scrieți-ne la adresa de e-mail din datele de contact și vă vom spune ce garanții acoperă fiecare furnizor și cum puteți obține o copie.",
           "Dacă schimbăm serviciul prin care se transmite formularul, această secțiune este rescrisă înainte ca schimbarea să producă efecte, iar data din capul paginii se modifică odată cu ea.",
         ],
       },
@@ -187,7 +187,7 @@ export const legal: LegalDict = {
       {
         heading: "Cum depuneți o cerere sau o plângere",
         paragraphs: [
-          "Scrieți la adresa pentru protecția datelor din datele de contact aflate în subsolul acestei pagini. Spuneți ce doriți și, dacă știți, ce drept exercitați. Nu este nevoie de o formulare anume.",
+          "Scrieți la adresa de e-mail din datele de contact aflate în subsolul acestei pagini. Spuneți ce doriți și, dacă știți, ce drept exercitați. Nu este nevoie de o formulare anume.",
           "Este posibil să vă cerem să vă confirmați identitatea înainte de a divulga ceva, pentru ca datele dumneavoastră să nu ajungă la altcineva. Cererea privind un copil trebuie să vină din partea părintelui sau a reprezentantului legal.",
           "Răspundem în termen de o lună. Atunci când o cerere este complexă sau când primim mai multe deodată, putem prelungi acest termen cu încă 2 luni și vă comunicăm în prima lună că am făcut-o și din ce motiv. Fiecare cerere și fiecare răspuns se înregistrează, iar exercitarea unui drept nu vă costă nimic.",
           "Dacă socotiți că v-am gestionat greșit datele, spuneți-ne mai întâi: cele mai multe lucruri se îndreaptă mai repede direct. Nu aveți însă această obligație și vă puteți adresa oricând autorității de supraveghere. Această autoritate este Centrul Național pentru Protecția Datelor cu Caracter Personal al Republicii Moldova. După prima menționare, legea îl numește simplu „Centrul”, și la fel facem și noi.",
@@ -220,7 +220,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "Actualizăm această politică atunci când se schimbă prelucrările noastre și atunci când se schimbă legea. Data din capul paginii este data versiunii curente, iar o modificare substanțială este anunțată pe site înainte de a produce efecte.",
           "Politica este publicată în engleză, română și rusă. Limba română este limba de stat a Republicii Moldova, iar dacă versiunile diferă, prevalează textul în limba română.",
-          "Pentru orice aspect prevăzut aici, folosiți adresa pentru protecția datelor din datele de contact aflate în subsolul acestei pagini sau sunați la centru în timpul programului.",
+          "Pentru orice aspect prevăzut aici, folosiți adresa de e-mail din datele de contact aflate în subsolul acestei pagini sau sunați la centru în timpul programului.",
         ],
       },
     ],
@@ -288,7 +288,7 @@ export const legal: LegalDict = {
         paragraphs: [
           "Folosiți linkul pentru setările cookie-urilor din subsolul paginii. Acesta redeschide bannerul, cu opțiunile dumneavoastră actuale afișate, și le puteți schimba pe oricare dintre ele acolo. Retragerea consimțământului este la fel de simplă ca acordarea lui, exact cum cere art. 7 alin. (3) din Legea nr. 195/2024.",
           "Puteți, de asemenea, să ștergeți sau să blocați cookie-urile din setările browserului. Dacă le blocați pe acestea două, site-ul nu va reține limba aleasă și va întreba despre cookie-uri la fiecare vizită; nimic altceva nu se schimbă.",
-          "Păstrăm data opțiunii dumneavoastră și versiunea bannerului care v-a fost afișată, pentru a putea demonstra ce v-am întrebat și ce ați răspuns.",
+          "Data opțiunii dumneavoastră și versiunea bannerului care v-a fost afișată se păstrează chiar în cookie-ul tbi_consent, pe dispozitivul dumneavoastră. Noi nu păstrăm o copie pe sistemele noastre, așa că ștergerea acelui cookie șterge înregistrarea, iar bannerul vă întreabă din nou.",
         ],
       },
       {

@@ -116,7 +116,7 @@ export default async function ContactPage(props: Props) {
         <Container>
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="min-w-0 lg:col-span-5">
-              <div className="lg:sticky lg:top-28">
+              <div className="lg:sticky lg:top-[calc(var(--header-h)+2.5rem)]">
                 <SectionHeading
                   index={2}
                   eyebrow={t.faq.header.eyebrow}

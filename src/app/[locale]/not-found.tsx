@@ -1,19 +1,28 @@
-import { defaultLocale } from "@/i18n/config";
-import { getDictionary } from "@/i18n/get-dictionary";
-import { href, primaryNav } from "@/i18n/routes";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { OwlMark } from "@/components/site/Logo";
 import { ArrowRight, Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
-import { OwlMark } from "@/components/site/Logo";
-import Link from "next/link";
+import { href, primaryNav } from "@/i18n/routes";
+import { commonFor, localeFromPathname } from "./boundary-dictionary";
 
 /**
- * not-found.tsx cannot read route params, so this renders in the site's
- * primary language. The header and footer above and below it stay in whatever
- * locale the layout resolved.
+ * The boundary for a notFound() thrown inside a matched locale route — the
+ * invalid-locale guards in the layout and the pages. An address that matches no
+ * route at all is answered by app/not-found.tsx instead, which has to render a
+ * whole document of its own; see the note there.
+ *
+ * A boundary is rendered without route params, so the locale comes off the
+ * pathname. The header and footer around this are already in that language, and
+ * the links below have to lead back into it rather than silently moving the
+ * visitor to English.
  */
-export default async function NotFound() {
-  const dict = await getDictionary(defaultLocale);
-  const locale = defaultLocale;
+export default function NotFound() {
+  const locale = localeFromPathname(usePathname());
+  const dict = commonFor(locale);
 
   return (
     <Container className="flex flex-col items-start py-24 sm:py-32">
@@ -21,17 +30,17 @@ export default async function NotFound() {
 
       <p className="eyebrow mt-8 text-red-500">404</p>
       <h1 className="font-display mt-4 max-w-2xl text-4xl leading-[1.08] font-semibold tracking-[-0.02em] text-navy-900 sm:text-5xl">
-        {dict.common.notFound.title}
+        {dict.notFound.title}
       </h1>
       <p className="mt-5 max-w-xl text-[1.0625rem] leading-relaxed text-slate-600">
-        {dict.common.notFound.body}
+        {dict.notFound.body}
       </p>
 
       <Button href={href(locale, "home")} size="lg" className="mt-8" trailing={<ArrowRight />}>
-        {dict.common.notFound.cta}
+        {dict.notFound.cta}
       </Button>
 
-      <nav aria-label={dict.common.footer.exploreTitle} className="mt-14 w-full border-t border-line pt-8">
+      <nav aria-label={dict.footer.exploreTitle} className="mt-14 w-full border-t border-line pt-8">
         <ul className="flex flex-wrap gap-x-8 gap-y-3">
           {primaryNav.map((key) => (
             <li key={key}>
@@ -39,7 +48,7 @@ export default async function NotFound() {
                 href={href(locale, key)}
                 className="link-underline text-[0.9375rem] font-medium text-navy-800"
               >
-                {dict.common.nav[key]}
+                {dict.nav[key]}
               </Link>
             </li>
           ))}

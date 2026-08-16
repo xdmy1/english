@@ -273,7 +273,13 @@ export function Timetable({
               aria-hidden={hasFilters ? undefined : true}
               tabIndex={hasFilters ? undefined : -1}
               className={cn(
-                "press h-8 px-3",
+                "h-8 px-3",
+                // Opacity has to join the button's own transition list, or the
+                // control appears and disappears in a single frame while every
+                // other appearance on the site eases. `press` is gone with it:
+                // its `transition: transform` shorthand fought this one, and the
+                // button already presses through active:scale.
+                "transition-[transform,background-color,border-color,color,box-shadow,opacity]",
                 hasFilters ? "opacity-100" : "pointer-events-none opacity-0",
               )}
               leading={
@@ -422,7 +428,20 @@ function WeekGrid({
 
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-white">
-      <div className="overflow-x-auto">
+      {/*
+        The grid is wider than the column between roughly 1024px and 1244px, and
+        every class block is a plain div, so there is nothing inside for Tab to
+        land on. Firefox and Safari do not focus a childless scroller by
+        themselves; without this the last day or two of the week are unreachable
+        without a pointer. The ring is drawn inside the box because the rounded
+        parent clips anything painted outside it.
+      */}
+      <div
+        tabIndex={0}
+        role="group"
+        aria-label={labels.views.week}
+        className="overflow-x-auto focus-visible:-outline-offset-2 focus-visible:outline-2 focus-visible:outline-navy-700"
+      >
         <div style={{ minWidth }}>
           {/* Day headings */}
           <div
@@ -459,13 +478,15 @@ function WeekGrid({
               className="sticky left-0 z-20 grid bg-white shadow-[1px_0_0_0_var(--color-line)]"
               style={{ gridTemplateRows: rows }}
             >
+              {/* slate-500, not 400: this is the only labelling of the time
+                  axis, and slate-400 is 2.76:1 on white. */}
               {hours.map((minute) => (
                 <span
                   key={minute}
                   style={{
                     gridRow: `${(minute - bounds.start) / ROW_MINUTES + 1} / span 4`,
                   }}
-                  className="pt-1 pr-2.5 text-right text-2xs leading-none font-medium text-slate-400 tabular-nums"
+                  className="pt-1 pr-2.5 text-right text-2xs leading-none font-medium text-slate-500 tabular-nums"
                 >
                   {formatHour(minute)}
                 </span>
@@ -538,20 +559,23 @@ function WeekGrid({
                           aria-hidden="true"
                           className={cn("absolute inset-y-0 left-0 w-[3px]", styles.rule)}
                         />
-                        <p className="text-[0.625rem] leading-[0.9rem] font-medium text-navy-700 tabular-nums">
+                        {/* text-2xs is the floor: 10px was the smallest type on
+                            the site, and the teacher line at slate-500 was 3.95:1
+                            on the navy-100 ground these blocks use. */}
+                        <p className="text-2xs leading-[0.95rem] font-medium text-navy-700 tabular-nums">
                           {slot.start}–{slot.end}
                         </p>
                         <p className="truncate text-[0.75rem] leading-5 font-semibold text-navy-900 tabular-nums">
                           {slot.group}
                         </p>
-                        <p className="mt-0.5 line-clamp-2 text-[0.625rem] leading-[0.875rem] text-slate-600">
+                        <p className="mt-0.5 line-clamp-2 text-2xs leading-[0.95rem] text-slate-600">
                           {slot.programmeName}
                         </p>
                         <div className="mt-1 flex flex-wrap items-center gap-1">
                           <MiniChip tone="navy">{slot.levelShort}</MiniChip>
                           <MiniChip tone="muted">{slot.roomShort}</MiniChip>
                         </div>
-                        <p className="mt-auto truncate pt-1 text-[0.625rem] leading-[0.9rem] text-slate-500">
+                        <p className="mt-auto truncate pt-1 text-2xs leading-[0.95rem] text-slate-600">
                           {slot.teacherName}
                         </p>
                       </div>
@@ -626,16 +650,25 @@ function DayList({
               </p>
             </div>
 
+            {/*
+              Columns from md, not sm. A twelfth of a 640px viewport is 33px, and
+              six columns of Cyrillic — "Преподаватель" alone is about 126px set
+              as an eyebrow — need more than that between them, so at 640px the
+              headings ran over each other. Below md the stacked dt/dd pairs are
+              the layout, and every cell carries its own label there. Teacher
+              takes the third track it needs; programme gives it up, being the one
+              column whose content wraps happily.
+            */}
             <div
               aria-hidden="true"
-              className="hidden gap-x-4 border-b border-line py-2.5 sm:grid sm:grid-cols-12"
+              className="hidden gap-x-4 border-b border-line py-2.5 md:grid md:grid-cols-12"
             >
-              <HeadCell className="sm:col-span-2">{columns.time}</HeadCell>
-              <HeadCell className="sm:col-span-2">{columns.group}</HeadCell>
-              <HeadCell className="sm:col-span-3">{columns.programme}</HeadCell>
-              <HeadCell className="sm:col-span-2">{columns.level}</HeadCell>
-              <HeadCell className="sm:col-span-2">{columns.teacher}</HeadCell>
-              <HeadCell className="sm:col-span-1">{columns.room}</HeadCell>
+              <HeadCell className="md:col-span-2">{columns.time}</HeadCell>
+              <HeadCell className="md:col-span-2">{columns.group}</HeadCell>
+              <HeadCell className="md:col-span-2">{columns.programme}</HeadCell>
+              <HeadCell className="md:col-span-2">{columns.level}</HeadCell>
+              <HeadCell className="md:col-span-3">{columns.teacher}</HeadCell>
+              <HeadCell className="md:col-span-1">{columns.room}</HeadCell>
             </div>
 
             <ul>
@@ -650,37 +683,37 @@ function DayList({
                       aria-hidden="true"
                       className={cn("absolute inset-y-0 left-0 w-[3px]", styles.rule)}
                     />
-                    <dl className="grid grid-cols-2 gap-x-4 gap-y-3.5 py-4 pr-1 pl-4 sm:grid-cols-12 sm:items-baseline sm:gap-y-0 sm:py-3.5">
+                    <dl className="grid grid-cols-2 gap-x-4 gap-y-3.5 py-4 pr-1 pl-4 md:grid-cols-12 md:items-baseline md:gap-y-0 md:py-3.5">
                       <Cell
                         label={columns.time}
-                        className="col-span-1 sm:col-span-2"
+                        className="col-span-1 md:col-span-2"
                         valueClassName="font-semibold tabular-nums"
                       >
                         {slot.start}–{slot.end}
                       </Cell>
                       <Cell
                         label={columns.group}
-                        className="col-span-1 sm:col-span-2"
+                        className="col-span-1 md:col-span-2"
                         valueClassName="font-semibold tracking-[0.01em] tabular-nums"
                       >
                         {slot.group}
                       </Cell>
-                      <Cell label={columns.programme} className="col-span-2 sm:col-span-3">
+                      <Cell label={columns.programme} className="col-span-2 md:col-span-2">
                         {slot.programmeName}
                       </Cell>
-                      <Cell label={columns.level} className="col-span-1 sm:col-span-2">
+                      <Cell label={columns.level} className="col-span-1 md:col-span-2">
                         <Tag>{slot.levelShort}</Tag>
                       </Cell>
                       <Cell
                         label={columns.teacher}
-                        className="col-span-1 sm:col-span-2"
+                        className="col-span-1 md:col-span-3"
                         valueClassName="text-slate-600"
                       >
                         {slot.teacherName}
                       </Cell>
                       <Cell
                         label={columns.room}
-                        className="col-span-2 sm:col-span-1"
+                        className="col-span-2 md:col-span-1"
                         valueClassName="text-slate-600"
                       >
                         {slot.roomName}
@@ -732,8 +765,8 @@ function FilterSelect({
             "text-[0.875rem] text-navy-900",
             "transition-[border-color,box-shadow] duration-200 ease-out-quint",
             // Let the global two-tone focus ring in globals.css do the work; a 12%
-    // navy ring on white is 1.3:1 and effectively invisible.
-    "focus-visible:border-navy-600",
+            // navy ring on white is 1.3:1 and effectively invisible.
+            "focus-visible:border-navy-600",
             "can-hover:hover:border-slate-300",
             value !== NO_FILTER && "border-navy-300 bg-navy-50/60 font-medium",
           )}
@@ -745,7 +778,7 @@ function FilterSelect({
           viewBox="0 0 12 12"
           fill="none"
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 right-3.5 size-3 -translate-y-1/2 text-slate-400"
+          className="pointer-events-none absolute top-1/2 right-3.5 size-3 -translate-y-1/2 text-slate-500"
         >
           <path
             d="m3 4.5 3 3 3-3"
@@ -788,8 +821,13 @@ function HeadCell({
   children: ReactNode;
   className?: string;
 }) {
+  // min-w-0 and break-words so a single long word — Romanian "PROFESOR",
+  // Russian "ПРЕПОДАВАТЕЛЬ" — wraps inside its track instead of running over the
+  // heading beside it. A grid-cols-12 track never grows past its share.
   return (
-    <p className={cn("eyebrow text-slate-500", className)}>{children}</p>
+    <p className={cn("eyebrow min-w-0 break-words text-slate-500", className)}>
+      {children}
+    </p>
   );
 }
 
@@ -805,9 +843,10 @@ function Cell({
   valueClassName?: string;
 }) {
   return (
-    <div className={className}>
-      <dt className="eyebrow text-slate-400 sm:sr-only">{label}</dt>
-      <dd className={cn("mt-1 text-[0.875rem] text-navy-900 sm:mt-0", valueClassName)}>
+    <div className={cn("min-w-0", className)}>
+      {/* slate-500: below md this is the only label the row carries. */}
+      <dt className="eyebrow break-words text-slate-500 md:sr-only">{label}</dt>
+      <dd className={cn("mt-1 text-[0.875rem] text-navy-900 md:mt-0", valueClassName)}>
         {children}
       </dd>
     </div>
