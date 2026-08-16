@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /*
+   * Pin the workspace root. Without this, Turbopack walks up looking for a
+   * lockfile and can settle on one outside the repository, then warn that it
+   * is ignoring ours.
+   */
+  turbopack: { root: import.meta.dirname },
+
   images: {
     /**
      * The photo placeholders in /public are SVGs we author ourselves. Next

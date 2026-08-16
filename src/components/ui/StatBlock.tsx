@@ -47,44 +47,51 @@ export function StatBlock({
       {statIds.map((id, index) => {
         const fact = stats[id];
         return (
-          <Reveal key={id} delay={Math.min(index, 3) * 60}>
-            <div
+          /*
+            The term comes first in the markup and the figure is lifted above
+            it with `order`. A <dd> before its <dt> is not a definition list —
+            screen readers lose the pairing — and the caption is a second <dd>
+            rather than a <p>, which a <dl> does not allow. The Reveal IS the
+            grouping div, because <dl> permits one div around each pair, not two.
+          */
+          <Reveal
+            key={id}
+            delay={Math.min(index, 3) * 60}
+            className={cn(
+              "flex flex-col border-t pt-5",
+              tone === "dark" ? "border-navy-800" : "border-white/25",
+            )}
+          >
+            <dt
               className={cn(
-                "border-t pt-5",
-                tone === "dark" ? "border-navy-800" : "border-white/25",
+                "order-2 mt-3 text-[0.9375rem] font-semibold",
+                tone === "dark" ? "text-navy-900" : "text-white",
               )}
             >
-              <dd
-                className={cn(
-                  "font-display text-[2.5rem] leading-none font-semibold tracking-[-0.02em] sm:text-[3.25rem]",
-                  tone === "dark" ? "text-navy-900" : "text-white",
-                )}
-              >
-                <CountUp
-                  locale={locale}
-                  value={statValue(id, year)}
-                  decimals={fact.decimals ?? 0}
-                  prefix={fact.prefix ?? ""}
-                  suffix={fact.suffix ?? ""}
-                />
-              </dd>
-              <dt
-                className={cn(
-                  "mt-3 text-[0.9375rem] font-semibold",
-                  tone === "dark" ? "text-navy-900" : "text-white",
-                )}
-              >
-                {labels[id].label}
-              </dt>
-              <p
-                className={cn(
-                  "mt-1.5 text-[0.8125rem] leading-relaxed",
-                  tone === "dark" ? "text-slate-500" : "text-navy-300",
-                )}
-              >
-                {labels[id].caption}
-              </p>
-            </div>
+              {labels[id].label}
+            </dt>
+            <dd
+              className={cn(
+                "font-display order-1 text-[2.5rem] leading-none font-semibold tracking-[-0.02em] sm:text-[3.25rem]",
+                tone === "dark" ? "text-navy-900" : "text-white",
+              )}
+            >
+              <CountUp
+                locale={locale}
+                value={statValue(id, year)}
+                decimals={fact.decimals ?? 0}
+                prefix={fact.prefix ?? ""}
+                suffix={fact.suffix ?? ""}
+              />
+            </dd>
+            <dd
+              className={cn(
+                "order-3 mt-1.5 text-[0.8125rem] leading-relaxed",
+                tone === "dark" ? "text-slate-500" : "text-navy-300",
+              )}
+            >
+              {labels[id].caption}
+            </dd>
           </Reveal>
         );
       })}

@@ -134,10 +134,19 @@
     color: #fff;
   }
 
+  /*
+    A two-tone ring: white inside, navy outside. One of the two always clears
+    3:1 (WCAG 1.4.11) whichever ground it lands on — a single navy ring is
+    1.7:1 against the navy sections, which fails. The transparent outline is
+    there so Windows forced-colors mode still paints a system focus ring.
+  */
   :focus-visible {
-    outline: 2px solid var(--color-navy-600);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 5px var(--color-navy-700);
+    border-radius: 3px;
   }
 
   /* Numbers should never wobble in tables, stats or timetables. */
@@ -147,26 +156,48 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* Scroll reveal — see components/ui/Reveal.tsx */
-  .reveal {
+  /* ── Scroll reveal — see components/ui/Reveal.tsx ─────────────────────────
+     Hiding is gated on html[data-js], which an inline script in the document
+     head sets before the first paint. Three consequences, all deliberate:
+
+       • no JavaScript at all      → content was never hidden
+       • script blocked or failed  → content was never hidden
+       • JS present but slow       → hidden, then the failsafe animation below
+                                     un-hides everything after 1.2s whether or
+                                     not React has hydrated
+
+     Without the gate, every page ships its content at opacity:0 and a visitor
+     on a slow connection stares at an empty screen until the bundle arrives. */
+
+  html[data-js] .reveal {
     opacity: 0;
     transform: translate3d(0, var(--reveal-y, 10px), 0);
     transition:
       opacity 520ms var(--ease-out-quint) var(--reveal-delay, 0ms),
       transform 520ms var(--ease-out-quint) var(--reveal-delay, 0ms);
     will-change: opacity, transform;
+    animation: reveal-failsafe 1ms linear 1200ms forwards;
   }
 
-  .reveal[data-shown] {
+  html[data-js] .reveal[data-shown] {
     opacity: 1;
     transform: none;
     will-change: auto;
+    animation: none;
+  }
+
+  @keyframes reveal-failsafe {
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
+    html[data-js] .reveal {
       opacity: 1;
       transform: none;
+      animation: none;
     }
   }
 

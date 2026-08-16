@@ -396,7 +396,9 @@ function inputClasses(invalid: boolean) {
   return cn(
     "w-full rounded-xl border bg-white px-4 py-3 text-[0.9375rem] text-navy-900 placeholder:text-slate-400",
     "transition-[border-color,box-shadow] duration-200 ease-out-quint",
-    "focus:outline-none focus-visible:border-navy-600 focus-visible:ring-4 focus-visible:ring-navy-600/12",
+    // Let the global two-tone focus ring in globals.css do the work; a 12%
+    // navy ring on white is 1.3:1 and effectively invisible.
+    "focus-visible:border-navy-600",
     invalid ? "border-red-400 bg-red-50/40" : "border-slate-200 can-hover:hover:border-slate-300",
   );
 }

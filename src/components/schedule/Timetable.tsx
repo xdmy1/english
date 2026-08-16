@@ -731,7 +731,9 @@ function FilterSelect({
             "w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pr-10 pl-3.5",
             "text-[0.875rem] text-navy-900",
             "transition-[border-color,box-shadow] duration-200 ease-out-quint",
-            "focus:outline-none focus-visible:border-navy-600 focus-visible:ring-4 focus-visible:ring-navy-600/12",
+            // Let the global two-tone focus ring in globals.css do the work; a 12%
+    // navy ring on white is 1.3:1 and effectively invisible.
+    "focus-visible:border-navy-600",
             "can-hover:hover:border-slate-300",
             value !== NO_FILTER && "border-navy-300 bg-navy-50/60 font-medium",
           )}

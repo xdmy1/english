@@ -27,6 +27,14 @@ export function pageMetadata({
     ["x-default", href("en", route)],
   ]);
 
+  /*
+    `images` has to be named explicitly. A page's openGraph object REPLACES the
+    layout's rather than merging into it, and the generated card lives at
+    /[locale]/opengraph-image — so leaving it out silently drops the social
+    image from every page except the three home pages.
+  */
+  const ogImage = `/${locale}/opengraph-image`;
+
   return {
     title,
     description,
@@ -41,8 +49,14 @@ export function pageMetadata({
       url: path,
       title,
       description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: site.name }],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
     ...(noIndex ? { robots: { index: false, follow: true } } : {}),
   };
 }

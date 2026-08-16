@@ -52,12 +52,20 @@ export default async function LocaleLayout(props: Props) {
       lang={localeMeta[typedLocale].htmlLang}
       className={`${literata.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        {/*
+          Marks the document as scriptable before the first paint. Everything
+          that hides content until JavaScript runs — the scroll reveals — is
+          gated on this flag, so a visitor whose bundle is slow, blocked or
+          broken still sees the page. See the .reveal rules in globals.css.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: 'document.documentElement.setAttribute("data-js","")',
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-white">
-        <noscript>
-          {/* Scroll reveals never resolve without JS — show everything. */}
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
-
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"

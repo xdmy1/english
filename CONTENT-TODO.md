@@ -154,6 +154,35 @@ Still to do:
 
 ---
 
+# Questions raised by the translators
+
+The Romanian and Russian versions were written from the English by translators who then read each
+other's work. Five things they could not decide without you:
+
+1. **The founder is written as a woman in Romanian** — *fondatoarea*, *Fondatoare și director
+   academic*. Your brief said *fondatoarea*, so we followed it. Russian keeps the standard masculine
+   job noun *основатель* with feminine agreement (*основатель, которая…*), which is normal Russian.
+   If either is wrong, `ro/team.ts`, `ro/contact.ts`, `ro/about.ts` and the Russian equivalents need
+   changing.
+
+2. **Terms, not semesters.** The site names three terms a year (autumn, spring, summer), so the
+   Romanian says *trimestru* and the Russian *триместр*. If you actually run two semesters, the
+   English is what needs correcting, not the translations.
+
+3. **The Romanian text is the governing version.** Both the privacy notice and the terms state that
+   where the three languages differ, the Romanian prevails. That is the right choice for a Moldovan
+   business — but it means the **Romanian** legal pages are the ones your lawyer must read, not the
+   English.
+
+4. **Cambridge letter grades vs numeric marks** are deliberately different words in Romanian:
+   *calificativ* for A/B/C and shields, *notă* for the BAC mark and *nota 10 din oficiu*. Worth a
+   native ear confirming that reads naturally to a Moldovan parent.
+
+5. **`legal.updatedDate` says 16 August 2026** in all three languages. Re-date it whenever you change
+   any legal text — the field is at the top of each `legal.ts`.
+
+---
+
 # Nice to have, not blocking
 
 - **Testimonials.** There is no testimonials section, because inventing them would be dishonest.
